@@ -200,7 +200,7 @@ See [`DESIGN.md`](./DESIGN.md) for full specs.
 | AI rationale/risks/catalysts | ✅ Gemma 4 31B live | — |
 | News Feed | ✅ Yahoo Finance search API | — |
 | AI advisor chat | ✅ Gemma 4 31B streaming | — |
-| 12-month backtest stats | — | ⚠️ Mock (real backtest requires backend repo output) |
+| 12-month backtest stats | — | ⚠️ Mock (visual demonstration; real backtest needs walk-forward framework) |
 | Sample daily markdown report | — | ⚠️ Mock |
 | 50-stock extended universe metadata | ✅ Static facts | — |
 

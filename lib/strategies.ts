@@ -1,5 +1,5 @@
 /**
- * 11 種策略分析器 — 對應 GitHub repo `_quant-terminal` 內建的 strategy modules
+ * 11 種策略分析器 — 11 種策略分析器，對應內建 indicators 純函式
  *
  * 每個策略提供：
  *   - id / 中英文名稱 / 說明

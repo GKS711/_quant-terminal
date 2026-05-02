@@ -1,7 +1,7 @@
 /**
  * 多市場精選池 — TW / US / HK / CN，共 12 檔
  *
- * 對齊 GitHub `_quant-terminal` 系統涵蓋：A 股 / 港股 / 美股 + 台股
+ * 涵蓋：A 股 / 港股 / 美股 + 台股
  *
  * 資料來源優先序：
  *   1. lib/cached/snapshot.json（build 時抓的真實 Yahoo + Gemma 4，最新）

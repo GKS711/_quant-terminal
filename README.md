@@ -265,7 +265,7 @@ scripts/
 | AI 決策 rationale/risks/catalysts | ✅ Gemma 4 31B 真打 | — |
 | News Feed | ✅ Yahoo Finance search API | — |
 | AI 顧問 chat | ✅ Gemma 4 31B 串流 | — |
-| 12 個月回測數據 | — | ⚠️ Mock（真回測需從 backend repo 餵） |
+| 12 個月回測數據 | — | ⚠️ Mock（真回測需 walk-forward 框架，本 repo 為視覺示範） |
 | Sample 日報 markdown | — | ⚠️ Mock |
 | 50 檔擴充 metadata | ✅ 靜態事實 | — |
 

@@ -1,7 +1,7 @@
 /**
  * 12 個月回測 mock 資料
  *
- * 模擬 _quant-terminal 系統「策略 vs 大盤」回測結果，
+ * 模擬「策略 vs 大盤」回測結果，
  * 給 Backtest Results section 的 Recharts 折線圖用。
  *
  * 數值經過設計：策略略勝大盤但有合理的回撤，看起來像真實回測（不是一路漲）。
