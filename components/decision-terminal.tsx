@@ -454,6 +454,7 @@ function StockDetailDialog({
   const [aiResult, setAiResult] = useState<{
     signal: Signal; score: number; rationale: string; risks: string[]; checklist: string[]; source: string;
   } | null>(null);
+  const [freshQuote, setFreshQuote] = useState<{ price: number; change30dPct: number } | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -482,13 +483,24 @@ function StockDetailDialog({
   async function runAnalysis() {
     setAnalyzing(true);
     try {
-      const r = await fetch("/api/analyze", {
+      // 用 /api/refresh-stock 一次拿 fresh price + decision（curl Yahoo + 11 策略 + Gemma）
+      const r = await fetch("/api/refresh-stock", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symbol: stock.symbol, strategy: "consensus", lookbackDays: 30 }),
+        body: JSON.stringify({ symbol: stock.symbol }),
       });
       const j = await r.json();
-      if (j.ok) setAiResult({ ...j.result, source: j.source });
+      if (j.ok && j.decision && !j.decision.error) {
+        setAiResult({
+          signal: j.decision.signal,
+          score: j.decision.score,
+          rationale: j.decision.rationale,
+          risks: j.decision.risks ?? [],
+          checklist: j.decision.catalysts ?? [],
+          source: "gemma-4-31b · 即時",
+        });
+        setFreshQuote({ price: j.quote.price, change30dPct: j.quote.change30dPct });
+      }
     } finally { setAnalyzing(false); }
   }
 
@@ -567,14 +579,20 @@ function StockDetailDialog({
           <div className="text-[10px] font-mono uppercase tracking-wider text-[#62666d] mb-1.5">即時報價</div>
           <div className="flex items-baseline gap-3">
             <span className="text-[32px] tabular-nums" style={{ fontWeight: 510, letterSpacing: "-0.7px" }}>
-              {currencySymbol}{quote ? quote.price.toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—"}
+              {currencySymbol}{freshQuote ? freshQuote.price.toLocaleString(undefined, { maximumFractionDigits: 2 }) : (quote ? quote.price.toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—")}
             </span>
-            {quote && (
+            {freshQuote ? (
+              <span className="inline-flex items-center gap-1 text-[14px] tabular-nums font-mono" style={{ color: freshQuote.change30dPct >= 0 ? BULL : BEAR }}>
+                {freshQuote.change30dPct >= 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                {freshQuote.change30dPct >= 0 ? "+" : ""}{freshQuote.change30dPct.toFixed(2)}% <span className="text-[10px] text-[#62666d]">30d</span>
+              </span>
+            ) : quote && (
               <span className="inline-flex items-center gap-1 text-[14px] tabular-nums font-mono" style={{ color: positive ? BULL : BEAR }}>
                 {positive ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
                 {positive ? "+" : ""}{quote.changePercent.toFixed(2)}%
               </span>
             )}
+            {freshQuote && <span className="text-[10px] font-mono uppercase tracking-wider" style={{ color: MINT_BRIGHT }}>· LIVE</span>}
           </div>
         </div>
 
@@ -591,7 +609,7 @@ function StockDetailDialog({
               style={{ color: MINT_BRIGHT }}
             >
               <RefreshCw className={`h-3 w-3 ${analyzing ? "animate-spin" : ""}`} />
-              {analyzing ? "推論中" : "重新分析"}
+              {analyzing ? "重抓中…" : "🔄 重抓最新"}
             </button>
           </div>
           <div className="flex items-baseline gap-3">

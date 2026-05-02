@@ -11,7 +11,7 @@
 
 ## 🎯 In One Sentence
 
-**The frontend showcase of [`_quant-terminal`](https://github.com/GKS711/_quant-terminal)** — a real Python-based quantitative system that runs daily and now has its output beautifully visualized as a shareable dashboard.
+**`_quant-terminal` is GKS's self-built global multi-market AI quantitative dashboard** — Next.js 14 + real Yahoo Finance v8 + Gemma 4 31B inference + 11 pure-function strategies, all in a single repo.
 
 ---
 
@@ -147,16 +147,7 @@ NEXT_PUBLIC_SITE_URL=https://your-deploy.vercel.app
 - **Validation**: zod
 - **OG image**: next/og (Edge runtime, per-stock unique)
 
-### Backend ([separate repo](https://github.com/GKS711/_quant-terminal))
-
-- Python 3.10+ / FastAPI / SQLAlchemy
-- Litellm (40+ LLM abstraction layer)
-- 8+ data sources: efinance / AkShare / Tushare / Pytdx / Baostock / YFinance / Longbridge / TickFlow
-- 11 strategy analyzers
-- Multi-channel notifications: WeChat / Feishu / Telegram / Discord / Slack / Email
-- GitHub Actions cron at 09:00 daily
-
-### Data Layer (build-time)
+### Data Layer (build-time + on-demand refresh)
 
 ```
 scripts/refresh-data.mjs
@@ -238,14 +229,14 @@ MIT — feel free to fork and self-host.
 
 ## 🙏 Credits
 
-- Backend system: [`_quant-terminal`](https://github.com/GKS711/_quant-terminal) by GKS
 - Charts: [Recharts](https://recharts.org) · [lightweight-charts](https://www.tradingview.com/lightweight-charts/) by TradingView
 - Icons: [Lucide](https://lucide.dev)
 - Fonts: [Geist](https://vercel.com/font) by Vercel
 - AI Model: [Gemma 4 31B](https://ai.google.dev/gemma) by Google
+- Stock data: [Yahoo Finance v8 chart API](https://finance.yahoo.com)
 
 ---
 
 Built end-to-end by **GKS** · 2026 · 100% custom-engineered
 
-[🌐 Live Demo](https://your-deploy.vercel.app) · [📖 繁體中文](./README.md) · [⚙️ DESIGN.md](./DESIGN.md) · [🐍 Backend Python repo](https://github.com/GKS711/_quant-terminal)
+[🌐 Live Demo](https://your-deploy.vercel.app) · [📖 繁體中文](./README.md) · [⚙️ DESIGN.md](./DESIGN.md)
