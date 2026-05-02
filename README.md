@@ -16,7 +16,7 @@
 **動機**：散戶要追全球多市場股票，每天得看 4 國 × 11 種技術指標 × N 篇新聞 ≈ 8 小時。我把這件事自動化，並做了一個「能直接看完就懂該怎麼動手」的儀表板。
 
 **這個 portfolio 適合：**
-- **看「能不能做完整系統」的雇主** — 後端 [`daily_stock_analysis`](https://github.com/GKS711/daily_stock_analysis)（Python 量化）+ 前端本 repo（Next.js 14 + AI），雙 repo 並排展示端到端能力
+- **看「能不能做完整系統」的雇主** — 後端 [`_quant-terminal`](https://github.com/GKS711/_quant-terminal)（Python 量化）+ 前端本 repo（Next.js 14 + AI），雙 repo 並排展示端到端能力
 - **想看「真資料 vs Mock 假資料」的人** — 12 檔股票每張卡片價格 / sparkline / AI 共識訊號**全是真實 Yahoo Finance + Gemma 4 31B 即時推論**，不是寫死的假數據
 - **想看設計細節的人** — 暗黑系 + 一個強調色（薄荷綠 #4EAA85）+ Bloomberg 級資訊密度，詳見 [DESIGN.md](./DESIGN.md)
 - **學 Next.js 14 / AI 整合 / SSG OG image 的工程師** — 12 條 SSG 個股路由、edge runtime OG 動態圖、Gemma streaming chat、純函式策略可單元測試
@@ -30,7 +30,7 @@
 
 ## 🎯 一句話介紹
 
-**這是 [`daily_stock_analysis`](https://github.com/GKS711/daily_stock_analysis) 開源系統的前端展示頁** — 後端是 Python 寫的真實量化分析系統，每天自動執行；前端把它的 output 視覺化成可分享的儀表板。
+**這是 [`_quant-terminal`](https://github.com/GKS711/_quant-terminal) 開源系統的前端展示頁** — 後端是 Python 寫的真實量化分析系統，每天自動執行；前端把它的 output 視覺化成可分享的儀表板。
 
 ---
 
@@ -166,7 +166,7 @@ NEXT_PUBLIC_SITE_URL=https://your-deploy.vercel.app
 - **Validation**：zod
 - **OG image**：next/og（Edge runtime，每股獨立）
 
-### 後端（[另一個 repo](https://github.com/GKS711/daily_stock_analysis)）
+### 後端（[另一個 repo](https://github.com/GKS711/_quant-terminal)）
 
 - Python 3.10+ / FastAPI / SQLAlchemy
 - Litellm（40+ LLM 抽象層）
@@ -303,7 +303,7 @@ MIT — 歡迎 fork & 自架。
 
 ## 🙏 Credits
 
-- 後端系統：[`daily_stock_analysis`](https://github.com/GKS711/daily_stock_analysis) by GKS
+- 後端系統：[`_quant-terminal`](https://github.com/GKS711/_quant-terminal) by GKS
 - Charts：[Recharts](https://recharts.org) · [lightweight-charts](https://www.tradingview.com/lightweight-charts/) by TradingView
 - Icons：[Lucide](https://lucide.dev)
 - Fonts：[Geist](https://vercel.com/font) by Vercel
@@ -313,4 +313,4 @@ MIT — 歡迎 fork & 自架。
 
 由 **GKS** 設計實作 · 2026 · 整套技術棧 100% 自架
 
-[🌐 Live Demo](https://your-deploy.vercel.app) · [📖 English](./README.en.md) · [⚙️ DESIGN.md](./DESIGN.md) · [🐍 後端 Python repo](https://github.com/GKS711/daily_stock_analysis)
+[🌐 Live Demo](https://your-deploy.vercel.app) · [📖 English](./README.en.md) · [⚙️ DESIGN.md](./DESIGN.md) · [🐍 後端 Python repo](https://github.com/GKS711/_quant-terminal)

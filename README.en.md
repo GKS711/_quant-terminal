@@ -11,7 +11,7 @@
 
 ## 🎯 In One Sentence
 
-**The frontend showcase of [`daily_stock_analysis`](https://github.com/GKS711/daily_stock_analysis)** — a real Python-based quantitative system that runs daily and now has its output beautifully visualized as a shareable dashboard.
+**The frontend showcase of [`_quant-terminal`](https://github.com/GKS711/_quant-terminal)** — a real Python-based quantitative system that runs daily and now has its output beautifully visualized as a shareable dashboard.
 
 ---
 
@@ -147,7 +147,7 @@ NEXT_PUBLIC_SITE_URL=https://your-deploy.vercel.app
 - **Validation**: zod
 - **OG image**: next/og (Edge runtime, per-stock unique)
 
-### Backend ([separate repo](https://github.com/GKS711/daily_stock_analysis))
+### Backend ([separate repo](https://github.com/GKS711/_quant-terminal))
 
 - Python 3.10+ / FastAPI / SQLAlchemy
 - Litellm (40+ LLM abstraction layer)
@@ -238,7 +238,7 @@ MIT — feel free to fork and self-host.
 
 ## 🙏 Credits
 
-- Backend system: [`daily_stock_analysis`](https://github.com/GKS711/daily_stock_analysis) by GKS
+- Backend system: [`_quant-terminal`](https://github.com/GKS711/_quant-terminal) by GKS
 - Charts: [Recharts](https://recharts.org) · [lightweight-charts](https://www.tradingview.com/lightweight-charts/) by TradingView
 - Icons: [Lucide](https://lucide.dev)
 - Fonts: [Geist](https://vercel.com/font) by Vercel
@@ -248,4 +248,4 @@ MIT — feel free to fork and self-host.
 
 Built end-to-end by **GKS** · 2026 · 100% custom-engineered
 
-[🌐 Live Demo](https://your-deploy.vercel.app) · [📖 繁體中文](./README.md) · [⚙️ DESIGN.md](./DESIGN.md) · [🐍 Backend Python repo](https://github.com/GKS711/daily_stock_analysis)
+[🌐 Live Demo](https://your-deploy.vercel.app) · [📖 繁體中文](./README.md) · [⚙️ DESIGN.md](./DESIGN.md) · [🐍 Backend Python repo](https://github.com/GKS711/_quant-terminal)

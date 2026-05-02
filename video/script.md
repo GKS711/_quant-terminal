@@ -121,7 +121,7 @@
 **後製動畫建議**：
 - 1:01 流水線出現時，每個節點 stagger 進場（300ms 間隔），中間箭頭跟著動
 - 1:08 切到技術棧時，6 個 icon 同時 fade-up
-- 1:12 浮現 GitHub URL「github.com/GKS711/daily_stock_analysis」並 highlight
+- 1:12 浮現 GitHub URL「github.com/GKS711/_quant-terminal」並 highlight
 
 ---
 
@@ -146,7 +146,7 @@
 - 1:23 整個畫面慢慢 dim 70%
 - 1:25 中央放大 logo「每日股市儀表板」+ tagline「by GKS · 2026」
 - 1:28 GitHub QR code（200×200）淡入畫面右下
-- 1:29 → 黑屏 + URL 文字「github.com/GKS711/daily_stock_analysis」
+- 1:29 → 黑屏 + URL 文字「github.com/GKS711/_quant-terminal」
 
 ---
 

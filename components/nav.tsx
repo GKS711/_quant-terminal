@@ -91,7 +91,7 @@ export function Nav() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/GKS711/daily_stock_analysis"
+            href="https://github.com/GKS711/_quant-terminal"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm text-ink-300 hover:text-ink-50 hover:bg-white/5 transition-colors"

@@ -594,7 +594,7 @@ function addFooter(slide, pageNum, total = 10) {
   });
 
   // 底部 GitHub proof badge
-  s.addText("→ github.com/GKS711/daily_stock_analysis", {
+  s.addText("→ github.com/GKS711/_quant-terminal", {
     x: 0.5, y: 5.05, w: 9, h: 0.25,
     fontSize: 11, color: C.mintLite, italic: true,
     align: "center", fontFace: "Menlo", margin: 0,
@@ -631,7 +631,7 @@ function addFooter(slide, pageNum, total = 10) {
   });
 
   // URL 巨大（mint underline 風格）
-  s.addText("github.com/GKS711/daily_stock_analysis", {
+  s.addText("github.com/GKS711/_quant-terminal", {
     x: 0.5, y: 4.0, w: 9, h: 0.5,
     fontSize: 22, color: C.mintLite, bold: true,
     align: "center", fontFace: "Menlo", margin: 0,

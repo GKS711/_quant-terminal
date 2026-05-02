@@ -520,7 +520,7 @@ function addFooter(slide, pageNum, total = 10) {
     x: 5.2, y: 1.75, w: 4.3, h: 3.0,
     fill: { color: C.bgCard }, line: { color: C.border, width: 1 },
   });
-  s.addText("BACKEND  · daily_stock_analysis", {
+  s.addText("BACKEND  · _quant-terminal", {
     x: 5.4, y: 1.9, w: 3.9, h: 0.3,
     fontSize: 11, color: C.mintLite, bold: true, fontFace: "Menlo", charSpacing: 3, margin: 0,
   });
@@ -543,7 +543,7 @@ function addFooter(slide, pageNum, total = 10) {
     });
   });
 
-  s.addText("→ github.com/GKS711/daily_stock_analysis  ·  MIT 開源", {
+  s.addText("→ github.com/GKS711/_quant-terminal  ·  MIT 開源", {
     x: 0.5, y: 5.0, w: 9, h: 0.3,
     fontSize: 11, color: C.mintLite, italic: true, align: "center", fontFace: "Menlo", margin: 0,
   });
@@ -617,7 +617,7 @@ function addFooter(slide, pageNum, total = 10) {
       fontSize: 12, color: C.text, fontFace: "PingFang TC", margin: 0,
     });
   });
-  s.addText("以上 DEMO 區塊頁面有黃色 chip 標示 ·\n後端 daily_stock_analysis 有真實版", {
+  s.addText("以上 DEMO 區塊頁面有黃色 chip 標示 ·\n後端 _quant-terminal 有真實版", {
     x: 5.4, y: 4.0, w: 4.1, h: 0.8,
     fontSize: 11, color: C.textDim, italic: true,
     fontFace: "PingFang TC", margin: 0,
@@ -677,7 +677,7 @@ function addFooter(slide, pageNum, total = 10) {
     x: 1.5, y: 3.7, w: 7, h: 1.05,
     fill: { color: C.bgCard }, line: { color: C.border, width: 1 },
   });
-  s.addText("🐙  github.com/GKS711/daily_stock_analysis", {
+  s.addText("🐙  github.com/GKS711/_quant-terminal", {
     x: 1.5, y: 3.8, w: 7, h: 0.45,
     fontSize: 18, color: C.mintLite, bold: true,
     align: "center", valign: "middle", fontFace: "Menlo", margin: 0,

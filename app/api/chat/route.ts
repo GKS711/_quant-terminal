@@ -40,7 +40,7 @@ function buildSystemPrompt(): string {
   const refreshedAt = SNAPSHOT.refreshedAt
     ? new Date(SNAPSHOT.refreshedAt).toLocaleString("zh-TW", { timeZone: "Asia/Taipei" })
     : "尚未更新";
-  return `你是「AI 顧問」的多市場投資副駕，涵蓋台股 / 美股 / 港股 / A 股共 12 檔精選股票（後端是 daily_stock_analysis 開源系統）。
+  return `你是「AI 顧問」的多市場投資副駕，涵蓋台股 / 美股 / 港股 / A 股共 12 檔精選股票（後端是 _quant-terminal 開源系統）。
 任務：用沉穩、白話的繁體中文，向散戶解釋投資觀念與多空訊號。
 
 【今日真實快照】（資料更新：${refreshedAt}）

@@ -14,10 +14,10 @@ const COLS = [
   {
     title: "GitHub Source",
     links: [
-      { label: "daily_stock_analysis", href: "https://github.com/GKS711/daily_stock_analysis" },
-      { label: "README",               href: "https://github.com/GKS711/daily_stock_analysis#readme" },
-      { label: "Issues",               href: "https://github.com/GKS711/daily_stock_analysis/issues" },
-      { label: "Releases",             href: "https://github.com/GKS711/daily_stock_analysis/releases" },
+      { label: "_quant-terminal", href: "https://github.com/GKS711/_quant-terminal" },
+      { label: "README",               href: "https://github.com/GKS711/_quant-terminal#readme" },
+      { label: "Issues",               href: "https://github.com/GKS711/_quant-terminal/issues" },
+      { label: "Releases",             href: "https://github.com/GKS711/_quant-terminal/releases" },
     ],
   },
   {

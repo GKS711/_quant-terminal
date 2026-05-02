@@ -4,7 +4,7 @@
  * 為什麼不是 500：
  *   - Yahoo Finance v8 對單 IP 嚴格限流（12 檔抓 1 分鐘已是極限）
  *   - 真正抓 500 需要 paid API（FMP / Alpha Vantage Premium / Twelve Data Pro）
- *   - 後端 daily_stock_analysis 設定可隨意改 STOCK_LIST 但前端展示 50 已夠視覺
+ *   - 後端 _quant-terminal 設定可隨意改 STOCK_LIST 但前端展示 50 已夠視覺
  *
  * 為什麼有意義：
  *   - 主頁 12 檔精選 = AI 重點分析、有 sparkline / 完整 11 策略 / Gemma rationale

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const ITEMS = [
   {
     q: "本站哪些是即時、哪些是 demo？",
-    a: "**即時**：股價（Yahoo Finance v2，30s cache，限流時切 mock）、AI 顧問 chat（真打 Gemma 4 31B 串流）、AI 決策 API（真打 Gemma 4 回 strict JSON）。**Demo**：12 檔的 AI 決策卡內容（rationale / risks / catalysts）、回測 12 月數據、6 條新聞、11 策略 × 12 股 heatmap 訊號、sample 日報——這些都標 DEMO chip。底層 daily_stock_analysis Python 系統用的是真實多源資料 + 每日自動執行。",
+    a: "**即時**：股價（Yahoo Finance v2，30s cache，限流時切 mock）、AI 顧問 chat（真打 Gemma 4 31B 串流）、AI 決策 API（真打 Gemma 4 回 strict JSON）。**Demo**：12 檔的 AI 決策卡內容（rationale / risks / catalysts）、回測 12 月數據、6 條新聞、11 策略 × 12 股 heatmap 訊號、sample 日報——這些都標 DEMO chip。底層 _quant-terminal Python 系統用的是真實多源資料 + 每日自動執行。",
   },
   {
     q: "12 檔股票是怎麼選的？",
@@ -27,7 +27,7 @@ const ITEMS = [
   },
   {
     q: "後端是什麼？",
-    a: "github.com/GKS711/daily_stock_analysis — Python / FastAPI / Litellm / 8+ 資料源 / GitHub Actions 每日 09:00 自動執行。",
+    a: "github.com/GKS711/_quant-terminal — Python / FastAPI / Litellm / 8+ 資料源 / GitHub Actions 每日 09:00 自動執行。",
   },
 ];
 

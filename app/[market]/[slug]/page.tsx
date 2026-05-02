@@ -296,7 +296,7 @@ export default function StockDetailPage({ params }: PageProps) {
               {market.exchange} 詳細行情 <ArrowUpRight className="h-3 w-3" />
             </a>
             <a
-              href="https://github.com/GKS711/daily_stock_analysis"
+              href="https://github.com/GKS711/_quant-terminal"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-[12px]"

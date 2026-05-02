@@ -1,7 +1,7 @@
 /**
  * 一份示範用的 AI 每日台股分析報告
  *
- * 真實感比例：模擬 daily_stock_analysis 系統的輸出格式（markdown）。
+ * 真實感比例：模擬 _quant-terminal 系統的輸出格式（markdown）。
  * 在 Daily Report Viewer 中以 monospace 字滾動展示，搭配打字機效果。
  */
 

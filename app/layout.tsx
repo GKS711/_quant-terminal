@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "每日股市儀表板 — 全球多市場量化分析儀表板 / GKS",
   description:
-    "由 GKS 自行設計實作的多市場 AI 量化分析儀表板：12 檔精選 × 4 國市場 × 11 種策略 × Gemma 4 31B 即時推論。後端開源於 github.com/GKS711/daily_stock_analysis。",
+    "由 GKS 自行設計實作的多市場 AI 量化分析儀表板：12 檔精選 × 4 國市場 × 11 種策略 × Gemma 4 31B 即時推論。後端開源於 github.com/GKS711/_quant-terminal。",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-stock-advisor.gks.dev",
   ),

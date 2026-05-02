@@ -1,5 +1,5 @@
 /**
- * 新聞 mock data — 模擬 daily_stock_analysis 系統用 Tavily / SerpAPI 抓的 24h 新聞
+ * 新聞 mock data — 模擬 _quant-terminal 系統用 Tavily / SerpAPI 抓的 24h 新聞
  *
  * 真實版可改成 fetch /api/news 路由（裡面接 Tavily / SerpAPI）
  *

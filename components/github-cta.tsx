@@ -59,7 +59,7 @@ export function GithubCta() {
             {/* CTA buttons */}
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
-                href="https://github.com/GKS711/daily_stock_analysis"
+                href="https://github.com/GKS711/_quant-terminal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-[15px]"
@@ -76,7 +76,7 @@ export function GithubCta() {
               </a>
 
               <a
-                href="https://github.com/GKS711/daily_stock_analysis#readme"
+                href="https://github.com/GKS711/_quant-terminal#readme"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-[15px]"

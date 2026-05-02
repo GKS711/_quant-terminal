@@ -40,7 +40,7 @@ export function BacktestChart() {
               border: "1px solid rgba(252,211,77,0.30)",
               fontWeight: 590,
             }}
-            title="回測數值為合理範圍內的示範資料；底層 daily_stock_analysis 有完整 walk-forward 模組"
+            title="回測數值為合理範圍內的示範資料；底層 _quant-terminal 有完整 walk-forward 模組"
           >
             DEMO
           </span>

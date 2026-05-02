@@ -44,8 +44,8 @@ export function TechStack() {
         </h2>
         <p className="mt-3 text-[14px] max-w-[480px]" style={{ color: "#a8a8b3" }}>
           後端在{" "}
-          <a href="https://github.com/GKS711/daily_stock_analysis" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: MINT_BRIGHT }}>
-            github.com/GKS711/daily_stock_analysis
+          <a href="https://github.com/GKS711/_quant-terminal" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: MINT_BRIGHT }}>
+            github.com/GKS711/_quant-terminal
           </a>
         </p>
 

@@ -607,7 +607,7 @@ function addFooter(slide, pageNum, total = 10) {
     x: 5.2, y: 1.75, w: 4.3, h: 3.0,
     fill: { color: C.bgCard }, line: { color: C.border, width: 1 },
   });
-  s.addText("BACKEND  ·  daily_stock_analysis", {
+  s.addText("BACKEND  ·  _quant-terminal", {
     x: 5.4, y: 1.95, w: 3.9, h: 0.3,
     fontSize: 11, color: C.textDim, bold: true, fontFace: "Menlo", charSpacing: 3, margin: 0,
   });
@@ -627,7 +627,7 @@ function addFooter(slide, pageNum, total = 10) {
     });
   });
 
-  s.addText("github.com/GKS711/daily_stock_analysis · MIT 開源", {
+  s.addText("github.com/GKS711/_quant-terminal · MIT 開源", {
     x: 0.5, y: 5.0, w: 9, h: 0.25,
     fontSize: 11, color: C.textMore, italic: true,
     align: "center", fontFace: "Menlo", margin: 0,
@@ -767,7 +767,7 @@ function addFooter(slide, pageNum, total = 10) {
   }
 
   // GitHub URL
-  s.addText("github.com/GKS711/daily_stock_analysis", {
+  s.addText("github.com/GKS711/_quant-terminal", {
     x: 0.5, y: 4.85, w: 9, h: 0.35,
     fontSize: 14, color: C.mintLite, bold: true,
     align: "center", fontFace: "Menlo", margin: 0,

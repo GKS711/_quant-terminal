@@ -642,7 +642,7 @@ function StockDetailDialog({
               查看完整頁面 →
             </Link>
             <a
-              href="https://github.com/GKS711/daily_stock_analysis"
+              href="https://github.com/GKS711/_quant-terminal"
               target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-2.5 text-[12px]"
               style={{ background: "rgba(255,255,255,0.03)", color: "#a8a8b3", border: "1px solid rgba(255,255,255,0.10)" }}

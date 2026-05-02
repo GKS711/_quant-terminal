@@ -205,7 +205,7 @@ export default async function OG() {
           }}
         >
           <span>12 stocks · 11 strategies · 4 markets</span>
-          <span>github.com/GKS711/daily_stock_analysis</span>
+          <span>github.com/GKS711/_quant-terminal</span>
         </div>
       </div>
     ),

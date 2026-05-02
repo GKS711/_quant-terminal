@@ -65,7 +65,7 @@ const BASE = "http://localhost:3000";
       const len = await page.evaluate(() => {
         const panel = document.querySelector(".thin-scroll");
         if (!panel) return 0;
-        // Heuristic: any text node beyond the initial greeting "daily_stock_analysis" line
+        // Heuristic: any text node beyond the initial greeting "_quant-terminal" line
         return panel.innerText.length;
       });
       if (len > 220 && len === lastLen) break; // text stopped growing → stream done
