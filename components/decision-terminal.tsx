@@ -239,20 +239,35 @@ function TerminalHeader({
     hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
   }) ?? "--:--:--";
   return (
-    <div className="flex items-center gap-2 text-[11px] font-mono text-[#62666d] flex-wrap">
-      <div className="flex items-center gap-1.5">
-        <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style={{ background: MINT_BRIGHT }} />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: MINT_BRIGHT }} />
-        </span>
-        <span className="uppercase tracking-wider text-[#8a8f98]">{loading ? "CONNECTING" : "LIVE"}</span>
+    <div className="flex flex-col gap-1.5 text-[11px] font-mono text-[#62666d]">
+      <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style={{ background: MINT_BRIGHT }} />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: MINT_BRIGHT }} />
+          </span>
+          <span className="uppercase tracking-wider text-[#8a8f98]">{loading ? "CONNECTING" : "LIVE"}</span>
+        </div>
+        <span>·</span>
+        <span className="inline-flex items-center gap-1"><Cpu className="h-3 w-3" /> gemma-4-31b-it</span>
+        <span>·</span>
+        <span>{source ?? "—"}</span>
+        <span>·</span>
+        <span>{time}</span>
       </div>
-      <span>·</span>
-      <span className="inline-flex items-center gap-1"><Cpu className="h-3 w-3" /> gemma-4-31b-it</span>
-      <span>·</span>
-      <span>{source ?? "—"}</span>
-      <span>·</span>
-      <span>{time}</span>
+      {/* Refresh hint chip — 教育 user 可以即時刷新 */}
+      <div
+        className="inline-flex items-center gap-1.5 self-start text-[10px] tracking-wide rounded-full px-2 py-0.5"
+        style={{
+          background: `${MINT_BRIGHT}14`,
+          color: MINT_BRIGHT,
+          border: `1px solid ${MINT_BRIGHT}33`,
+        }}
+        title="點任一卡片開啟詳情，dialog 內有「🔄 重抓最新」按鈕可即時刷新該檔（Yahoo + Gemma 4，~15 秒）"
+      >
+        <span aria-hidden>✦</span>
+        <span>點卡片可即時重抓該檔（Yahoo + Gemma 4，~15s）</span>
+      </div>
     </div>
   );
 }

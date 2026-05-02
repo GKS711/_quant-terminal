@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Newspaper, Clock, ExternalLink } from "lucide-react";
+import { Newspaper, Clock, ExternalLink, RefreshCw } from "lucide-react";
 import { NEWS as MOCK_NEWS, sentimentColor, sentimentLabel, type NewsItem, type SentimentLevel } from "@/lib/news-data";
 import { SNAPSHOT } from "@/lib/cached";
 
+const MINT = "#4EAA85";
 const MINT_BRIGHT = "#6FC298";
 
 /** Yahoo 真新聞 → NewsItem 格式（情緒先用標題簡單詞袋估算）*/
@@ -47,8 +48,33 @@ function adaptYahooNews(): NewsItem[] {
 export function NewsFeed() {
   const [filter, setFilter] = useState<"all" | "bull" | "bear">("all");
   const realNews = useMemo(() => adaptYahooNews(), []);
-  const NEWS = realNews.length > 0 ? realNews : MOCK_NEWS;
-  const isReal = realNews.length > 0;
+  const [freshNews, setFreshNews] = useState<NewsItem[] | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshedAt, setRefreshedAt] = useState<Date | null>(null);
+  const [refreshError, setRefreshError] = useState<string | null>(null);
+
+  const NEWS = freshNews ?? (realNews.length > 0 ? realNews : MOCK_NEWS);
+  const isReal = freshNews !== null || realNews.length > 0;
+  const isLive = freshNews !== null;
+
+  async function handleRefresh() {
+    setRefreshing(true);
+    setRefreshError(null);
+    try {
+      const r = await fetch("/api/refresh-news", { method: "POST" });
+      const j = await r.json();
+      if (j.ok && Array.isArray(j.news)) {
+        setFreshNews(j.news as NewsItem[]);
+        setRefreshedAt(new Date());
+      } else {
+        setRefreshError(j.error ?? "刷新失敗");
+      }
+    } catch (e: any) {
+      setRefreshError(e?.message ?? "網路錯誤");
+    } finally {
+      setRefreshing(false);
+    }
+  }
 
   const filtered = NEWS.filter((n) => {
     if (filter === "all") return true;
@@ -107,7 +133,28 @@ export function NewsFeed() {
             </p>
           </div>
 
-          <div className="flex items-center gap-1.5 text-[12px] font-mono">
+          <div className="flex items-center gap-1.5 text-[12px] font-mono flex-wrap">
+            {/* refresh button */}
+            <button
+              onClick={handleRefresh}
+              disabled={refreshing}
+              aria-live="polite"
+              title="重抓 Yahoo Finance 24h 最新新聞"
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors disabled:opacity-50"
+              style={{
+                background: isLive ? `${MINT}1f` : "rgba(255,255,255,0.02)",
+                color: isLive ? MINT_BRIGHT : "#a8a8b3",
+                border: `1px solid ${isLive ? `${MINT}66` : "rgba(255,255,255,0.10)"}`,
+                fontWeight: 510,
+              }}
+            >
+              <RefreshCw className={`h-3 w-3 ${refreshing ? "animate-spin" : ""}`} />
+              {refreshing ? "重抓中…" : isLive ? "✓ 已更新" : "🔄 重抓 24h"}
+            </button>
+
+            {/* divider */}
+            <span className="mx-1 text-[#3a3d42]">|</span>
+
             {(["all", "bull", "bear"] as const).map((f) => (
               <button
                 key={f}
@@ -125,6 +172,19 @@ export function NewsFeed() {
             ))}
           </div>
         </div>
+
+        {/* refresh status hint */}
+        {(refreshedAt || refreshError) && (
+          <div
+            className="mb-4 text-[11px] font-mono"
+            style={{ color: refreshError ? "#F59E0B" : "#62666d" }}
+            aria-live="polite"
+          >
+            {refreshError
+              ? `⚠ 刷新失敗：${refreshError}（顯示 build-time 資料）`
+              : `✓ 已更新於 ${refreshedAt!.toLocaleTimeString("zh-TW")} · LIVE 即時資料`}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filtered.map((item, i) => (
