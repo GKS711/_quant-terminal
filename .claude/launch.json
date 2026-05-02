@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ai-stock-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/gankaisheng/VScode/claude實作2/每日股市儀表板",
+        "run",
+        "dev"
+      ],
+      "port": 3000
+    }
+  ]
+}

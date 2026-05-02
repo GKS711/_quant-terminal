@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.env
+.env.local
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# nblm 下載的 audio/video overview (~80MB, 不推 GitHub)
+video/nblm/
