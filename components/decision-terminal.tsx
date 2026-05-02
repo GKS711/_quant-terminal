@@ -624,7 +624,7 @@ function StockDetailDialog({
               style={{ color: MINT_BRIGHT }}
             >
               <RefreshCw className={`h-3 w-3 ${analyzing ? "animate-spin" : ""}`} />
-              {analyzing ? "重抓中…" : "🔄 重抓最新"}
+              {analyzing ? "重抓中…" : "重抓最新"}
             </button>
           </div>
           <div className="flex items-baseline gap-3">

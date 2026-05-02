@@ -149,7 +149,7 @@ export function NewsFeed() {
               }}
             >
               <RefreshCw className={`h-3 w-3 ${refreshing ? "animate-spin" : ""}`} />
-              {refreshing ? "重抓中…" : isLive ? "✓ 已更新" : "🔄 重抓 24h"}
+              {refreshing ? "重抓中…" : isLive ? "已更新 · 再抓" : "重抓 24h"}
             </button>
 
             {/* divider */}
