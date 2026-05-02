@@ -18,7 +18,7 @@ export function AiDemo() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "model",
-      text: "你好。我是接到 _quant-terminal 系統的 AI 顧問。可以問 12 檔個股 / 11 策略 / 投資觀念。",
+      text: "你好。我是 AI 顧問，分析多市場 12 檔股票。可以問 12 檔個股 / 11 策略 / 投資觀念。",
     },
   ]);
   const [input, setInput] = useState("");

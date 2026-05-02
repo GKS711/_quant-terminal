@@ -9,7 +9,7 @@ import { EXTENDED_UNIVERSE, EXTENDED_TOTAL } from "@/lib/extended-universe";
 
 export const metadata: Metadata = {
   title: "標的池 · 50 檔擴充宇宙 — 每日股市儀表板",
-  description: `每日股市儀表板可擴充涵蓋的 ${EXTENDED_TOTAL} 檔多市場標的清單。後端 _quant-terminal 修改 STOCK_LIST 即可加入。`,
+  description: `每日股市儀表板可擴充涵蓋的 ${EXTENDED_TOTAL} 檔多市場標的清單。修改 lib/extended-universe.ts 的 STOCK_LIST 即可加入。`,
 };
 
 const MINT = "#4EAA85";
@@ -48,7 +48,7 @@ export default function MarketsPage() {
               </span>
             </h1>
             <p className="mt-3 text-[14px] max-w-[640px]" style={{ color: "#a8a8b3" }}>
-              首頁 12 檔是「重點分析」（含完整 AI 決策 + 11 策略 + sparkline）；本頁列 {EXTENDED_TOTAL} 檔擴充宇宙，後端 _quant-terminal 修 <code className="font-mono text-[#d0d6e0]">STOCK_LIST</code> 即可加入分析範圍。
+              首頁 12 檔是「重點分析」（含完整 AI 決策 + 11 策略 + sparkline）；本頁列 {EXTENDED_TOTAL} 檔擴充宇宙，修 <code className="font-mono text-[#d0d6e0]">lib/extended-universe.ts</code> 的 STOCK_LIST 即可加入分析範圍。
               <br />
               <span className="text-[11px] text-[#62666d]">
                 為什麼不直接展示 500 檔：Yahoo Finance 對單 IP 限流嚴格（12 檔 build 已用 1 分鐘）；500 檔需付費 API（FMP / Twelve Data Pro）。
