@@ -13,7 +13,7 @@
 import { SNAPSHOT, hasSnapshot, getCached } from "./cached";
 
 export type Signal = "buy" | "hold" | "sell";
-export type Market = "TW" | "US" | "HK" | "CN";
+export type Market = "TW" | "US" | "HK" | "CN" | "JP";
 
 export interface MarketMeta {
   code: Market;
@@ -21,7 +21,7 @@ export interface MarketMeta {
   nameZh: string;
   nameEn: string;
   exchange: string;
-  currency: "TWD" | "USD" | "HKD" | "CNY";
+  currency: "TWD" | "USD" | "HKD" | "CNY" | "JPY";
   tradingHoursLocal: string;
 }
 
@@ -30,6 +30,7 @@ export const MARKETS: Record<Market, MarketMeta> = {
   US: { code: "US", flag: "🇺🇸", nameZh: "美股", nameEn: "US",       exchange: "NASDAQ",   currency: "USD", tradingHoursLocal: "09:30–16:00 ET" },
   HK: { code: "HK", flag: "🇭🇰", nameZh: "港股", nameEn: "Hong Kong", exchange: "HKEX",    currency: "HKD", tradingHoursLocal: "09:30–16:00" },
   CN: { code: "CN", flag: "🇨🇳", nameZh: "A 股", nameEn: "Mainland",  exchange: "SSE/SZSE", currency: "CNY", tradingHoursLocal: "09:30–15:00" },
+  JP: { code: "JP", flag: "🇯🇵", nameZh: "日股", nameEn: "Japan",    exchange: "TSE",      currency: "JPY", tradingHoursLocal: "09:00–15:00 JST" },
 };
 
 export type SectorTag =

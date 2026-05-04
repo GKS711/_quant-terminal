@@ -85,12 +85,42 @@ export function StrategyHeatmap() {
                 const Icon = strategy.icon;
                 return (
                   <tr key={strategy.id}>
-                    <td className="pr-3 py-1">
-                      <div className="flex items-center gap-2 text-[12px]">
+                    <td className="pr-3 py-1 group relative cursor-help">
+                      <div
+                        className="flex items-center gap-2 text-[12px]"
+                        title={`${strategy.nameZh} (${strategy.nameEn})\n\n${strategy.simpleDesc}\n\n— ${strategy.description}`}
+                      >
                         <Icon className="h-3.5 w-3.5 flex-shrink-0" style={{ color: strategy.technical ? MINT_BRIGHT : "#a8a8b3" }} />
                         <div>
-                          <div className="text-[#d0d6e0]" style={{ fontWeight: 510 }}>{strategy.nameZh}</div>
+                          <div
+                            className="text-[#d0d6e0] underline decoration-dotted underline-offset-2"
+                            style={{ fontWeight: 510, textDecorationColor: "rgba(168,168,179,0.4)" }}
+                          >
+                            {strategy.nameZh}
+                          </div>
                           <div className="text-[10px] text-[#62666d] font-mono">{strategy.nameEn}</div>
+                        </div>
+                      </div>
+                      {/* Custom hover tooltip */}
+                      <div
+                        className="invisible group-hover:visible absolute left-0 top-full z-30 mt-1 w-72 rounded-lg p-3 shadow-2xl pointer-events-none"
+                        style={{
+                          background: "rgba(15,18,19,0.98)",
+                          border: "1px solid rgba(78,170,133,0.3)",
+                          boxShadow: "0 10px 40px rgba(0,0,0,0.6)",
+                        }}
+                      >
+                        <div className="text-[10px] text-[#a8a8b3] font-mono uppercase tracking-wider mb-1">
+                          {strategy.nameEn} · 策略邏輯
+                        </div>
+                        <div className="text-[11.5px] text-[#f7f8f8] leading-[1.5] mb-1.5" style={{ fontWeight: 510 }}>
+                          {strategy.simpleDesc}
+                        </div>
+                        <div className="text-[10.5px] text-[#a8a8b3] leading-[1.45] border-t border-white/10 pt-1.5">
+                          技術面：{strategy.description}
+                        </div>
+                        <div className="mt-2 text-[10px] text-[#62666d] font-mono">
+                          策略作者：GKS · rule-based heuristic · 公開計算公式
                         </div>
                       </div>
                     </td>

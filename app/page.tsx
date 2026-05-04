@@ -11,6 +11,7 @@ import { HowItWorks } from "@/components/how-it-works";
 import { NewsFeed } from "@/components/news-feed";
 import { GithubCta } from "@/components/github-cta";
 import { Faq } from "@/components/faq";
+import { DataProvenance } from "@/components/data-provenance";
 import { Footer } from "@/components/footer";
 
 export default function Page() {
@@ -50,10 +51,13 @@ export default function Page() {
         {/* 10. 技術棧 */}
         <section id="tech"><TechStack /></section>
 
-        {/* 11. GitHub CTA */}
+        {/* 11. Data Provenance — 解 user 批評「數據黑盒」 */}
+        <DataProvenance />
+
+        {/* 12. GitHub CTA */}
         <GithubCta />
 
-        {/* 12. FAQ */}
+        {/* 13. FAQ */}
         <Faq />
       </main>
       <Footer />
