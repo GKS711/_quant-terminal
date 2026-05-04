@@ -1,78 +1,101 @@
 import { Github, ExternalLink } from "lucide-react";
 
-const GOLD = "#F5A623";
-const PINK = "#FF4D6D";
+const SERIF = '"Iowan Old Style", "Palatino", "Georgia", serif';
+const INK = "#211922";
 
 export function Footer() {
   return (
     <footer
-      className="border-t mt-12"
       style={{
-        background: "#070D1A",
-        borderColor: "rgba(245,166,35,0.10)",
+        background: "#F5F4EF",
+        borderTop: "1px solid rgba(33,25,34,0.08)",
       }}
     >
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-          {/* Logo block */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span
-                className="grid h-7 w-7 place-items-center rounded-md"
-                style={{
-                  background: `linear-gradient(135deg, ${GOLD} 0%, ${PINK} 100%)`,
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M4 18 L10 10 L14 14 L20 6"
-                    stroke="#0B1426"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-              <span className="text-[14px]" style={{ fontWeight: 590, color: "#F4F6FA" }}>
-                每日股市儀表板
-              </span>
-            </div>
-            <p className="text-[12px] leading-relaxed" style={{ color: "#A9B3C4" }}>
-              全球多市場 AI 量化分析儀表板。讓 retail 投資人不用看盤就掌握股市全局。
-            </p>
-            <div className="text-[10px] font-mono mt-3" style={{ color: "#566175" }}>
-              by GKS · 2026 · 個人作品集
-            </div>
-          </div>
-
-          {/* Links */}
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-8 py-16">
+        {/* Magazine masthead */}
+        <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
           <div>
             <div
-              className="text-[10px] font-mono uppercase tracking-widest mb-3"
-              style={{ color: GOLD }}
+              className="text-[10px] uppercase tracking-[0.2em] mb-2"
+              style={{ color: "#91918C", fontWeight: 590 }}
             >
-              Source / Open
+              Colophon · 版本資訊
             </div>
-            <ul className="space-y-1.5 text-[12px]">
-              <li>
-                <a
-                  href="https://github.com/GKS711/_quant-terminal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:underline"
-                  style={{ color: "#D6DCE6" }}
-                >
-                  <Github className="h-3 w-3" />
-                  GitHub _quant-terminal
-                </a>
-              </li>
+            <h3
+              className="text-[28px] sm:text-[32px]"
+              style={{
+                fontFamily: SERIF,
+                color: INK,
+                fontWeight: 400,
+                lineHeight: 1.2,
+              }}
+            >
+              <span style={{ fontStyle: "italic" }}>每日</span>股市儀表板
+            </h3>
+            <p className="mt-2 text-[14px] max-w-[480px] leading-relaxed" style={{ color: "#62625B" }}>
+              讓全球市場像一份雜誌每天送到你手上。資料來自公開源、AI 解讀公開、計算公式公開。
+            </p>
+          </div>
+
+          <a
+            href="https://github.com/GKS711/_quant-terminal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[13px] px-4 py-2 rounded-full"
+            style={{
+              border: "1px solid rgba(33,25,34,0.15)",
+              color: INK,
+            }}
+          >
+            <Github className="h-3.5 w-3.5" />
+            View on GitHub
+          </a>
+        </div>
+
+        {/* 3 col */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
+          <div>
+            <div
+              className="text-[10px] uppercase tracking-[0.2em] mb-3"
+              style={{ color: "#91918C", fontWeight: 590 }}
+            >
+              Sources
+            </div>
+            <ul className="space-y-1.5 text-[13px]" style={{ color: "#62625B" }}>
+              <li>Yahoo Finance v8 (報價 / OHLC)</li>
+              <li>Stooq.com (備援)</li>
+              <li>Yahoo + GNews + RSS (新聞)</li>
+              <li>Google Gemma 4 31B (AI 推論)</li>
+            </ul>
+          </div>
+          <div>
+            <div
+              className="text-[10px] uppercase tracking-[0.2em] mb-3"
+              style={{ color: "#91918C", fontWeight: 590 }}
+            >
+              Stack
+            </div>
+            <ul className="space-y-1.5 text-[13px]" style={{ color: "#62625B" }}>
+              <li>Next.js 14 · TypeScript strict</li>
+              <li>Tailwind · Geist Sans / Mono</li>
+              <li>11 種策略純函式 · zod 驗證</li>
+            </ul>
+          </div>
+          <div>
+            <div
+              className="text-[10px] uppercase tracking-[0.2em] mb-3"
+              style={{ color: "#91918C", fontWeight: 590 }}
+            >
+              Open
+            </div>
+            <ul className="space-y-1.5 text-[13px]">
               <li>
                 <a
                   href="https://github.com/GKS711/_quant-terminal#readme"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:underline"
-                  style={{ color: "#D6DCE6" }}
+                  style={{ color: "#3B4F8C" }}
                 >
                   <ExternalLink className="h-3 w-3" />
                   README
@@ -84,48 +107,39 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:underline"
-                  style={{ color: "#D6DCE6" }}
+                  style={{ color: "#3B4F8C" }}
                 >
                   <ExternalLink className="h-3 w-3" />
                   DESIGN.md
                 </a>
               </li>
-            </ul>
-          </div>
-
-          {/* Tech */}
-          <div>
-            <div
-              className="text-[10px] font-mono uppercase tracking-widest mb-3"
-              style={{ color: GOLD }}
-            >
-              Stack
-            </div>
-            <ul className="space-y-1.5 text-[12px]" style={{ color: "#A9B3C4" }}>
-              <li>Next.js 14 · TypeScript strict</li>
-              <li>Tailwind · framer-motion</li>
-              <li>Yahoo Finance v8 · Stooq fallback</li>
-              <li>Gemma 4 31B (Google AI Studio)</li>
-              <li>11 種策略純函式</li>
+              <li>
+                <a
+                  href="https://github.com/GKS711/_quant-terminal/blob/main/scripts/refresh-data.mjs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:underline"
+                  style={{ color: "#3B4F8C" }}
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  資料 pipeline
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom strip */}
+        {/* Bottom rule */}
         <div
-          className="pt-6 border-t flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-[10px] font-mono"
+          className="pt-6 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-[10px] uppercase tracking-[0.15em]"
           style={{
-            borderColor: "rgba(244,246,250,0.06)",
-            color: "#566175",
+            borderTop: "1px solid rgba(33,25,34,0.08)",
+            color: "#91918C",
           }}
         >
-          <div>© 2026 GKS · 個人作品集 · 內容僅供研究參考，不構成投資建議</div>
-          <div className="inline-flex items-center gap-2">
-            <span style={{ color: PINK }}>● v2.0</span>
-            <span>·</span>
-            <span>大膽當代配色</span>
-            <span>·</span>
-            <span>5 國 100 檔</span>
+          <div>© 2026 GKS · Personal portfolio · Not investment advice</div>
+          <div>
+            v2.1 · Editorial Layout · Issue 001
           </div>
         </div>
       </div>

@@ -18,14 +18,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B1426",
-  colorScheme: "dark",
+  themeColor: "#FAF9F6",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="min-h-screen antialiased" style={{ background: "#0B1426", color: "#F4F6FA" }}>
+      <body className="min-h-screen antialiased" style={{ background: "#FAF9F6", color: "#211922" }}>
         {children}
       </body>
     </html>

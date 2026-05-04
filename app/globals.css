@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  /* v2.0 配色 — 深藍底 + 金 + 桃紅 */
-  --bg: #0B1426;
-  --fg: #F4F6FA;
-  --accent: #F5A623;
-  --alert: #FF4D6D;
+  color-scheme: light;
+  /* v2.1 Editorial 雜誌風（Notion + Pinterest 混搭） */
+  --bg: #FAF9F6;            /* warm white */
+  --fg: #211922;            /* plum near-black */
+  --accent: #211922;        /* deep ink */
+  --bull: #3E7A52;          /* editorial green */
+  --bear: #A23E3E;          /* editorial red */
+  --indigo: #3B4F8C;        /* link accent */
+  --border: rgba(33,25,34,0.08);
+  --serif: "Iowan Old Style", "Palatino", "Georgia", serif;
 }
 
 html {
@@ -27,7 +31,13 @@ html, body {
   font-feature-settings: "ss01", "cv11";
 }
 
-::selection { background: #F5A623; color: #0B1426; }
+::selection { background: #F2E8C9; color: #211922; }
+
+/* Editorial serif headline class */
+.font-editorial {
+  font-family: var(--serif);
+  font-feature-settings: "lnum", "kern", "liga";
+}
 
 /* Custom scroll for chat panel */
 .thin-scroll::-webkit-scrollbar { width: 6px; height: 6px; }

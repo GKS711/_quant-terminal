@@ -9,8 +9,47 @@ const config: Config = {
     extend: {
       colors: {
         // ───────────────────────────────────────────
-        // v2.0 配色 — 大膽當代（Webull / Toss / 韓系證券 app）
-        // 沒有 mint green
+        // v2.1 配色 — Editorial 雜誌風（Notion + Pinterest 混搭）
+        // warm white + plum near-black + muted 印刷紅綠
+        // ───────────────────────────────────────────
+
+        // Editorial Surface
+        paper: {
+          DEFAULT: "#FAF9F6",   // warm white 主背景
+          50:  "#FFFFFF",       // pure white card
+          100: "#FAF9F6",       // warm white
+          200: "#F5F4EF",       // cream（次層卡片）
+          300: "#EFEDE6",       // softer cream
+        },
+
+        // Editorial Ink (warm near-black with plum)
+        plum: {
+          DEFAULT: "#211922",   // primary text base
+          900: "#211922",       // 主文字（near black with plum undertone）
+          700: "#3D363E",
+          500: "#62625B",       // olive gray 副文字
+          400: "#91918C",       // tertiary
+          300: "#A39E98",       // disabled
+          200: "#C8C4BD",       // very light
+        },
+
+        // Editorial Accent (muted, not neon)
+        editorial: {
+          red:    "#A23E3E",    // 跌（暖磚紅）
+          green:  "#3E7A52",    // 漲（深苔蘚綠）
+          ink:    "#211922",    // primary accent (deep plum black)
+          yellow: "#F2E8C9",    // highlight bg（雜誌標籤紙）
+          indigo: "#3B4F8C",    // 連結 accent (莫蘭迪藍)
+          sand:   "#C18A3D",    // 警示赭色
+        },
+
+        // Editorial Status (muted versions)
+        bull: { DEFAULT: "#3E7A52", soft: "#E8F0EA" },  // 漲
+        bear: { DEFAULT: "#A23E3E", soft: "#F4E8E8" },  // 跌
+        warn: { DEFAULT: "#C18A3D", soft: "#F5EBD8" },
+
+        // ───────────────────────────────────────────
+        // v2.0 配色（保留不刪，舊 components 還在用）
         // ───────────────────────────────────────────
 
         // 深藍底（背景）
@@ -74,12 +113,7 @@ const config: Config = {
           900: "#0F1626",
         },
 
-        // 漲跌 — 仍用紅綠對比但偏 muted（避開 AI 綠主導感）
-        bull: { DEFAULT: "#26C281", soft: "#0D2A1F" },  // 漲（深一點的綠，不像 mint）
-        bear: { DEFAULT: "#FF3B5C", soft: "#33121A" },  // 跌（暖紅，跟 pink alert 差別在飽和度）
-
-        // 警示 / 中性
-        warn: { DEFAULT: "#FFB627", soft: "#332300" },
+        // (v2.0 bull/bear/warn 已被 v2.1 editorial muted 版本取代於上方)
         neutral: { DEFAULT: "#7A869A", soft: "#1A2235" },
       },
       fontFamily: {
