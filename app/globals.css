@@ -4,8 +4,11 @@
 
 :root {
   color-scheme: dark;
-  --bg: #0A0A0A;
-  --fg: #F6F6F6;
+  /* v2.0 配色 — 深藍底 + 金 + 桃紅 */
+  --bg: #0B1426;
+  --fg: #F4F6FA;
+  --accent: #F5A623;
+  --alert: #FF4D6D;
 }
 
 html {
@@ -24,7 +27,7 @@ html, body {
   font-feature-settings: "ss01", "cv11";
 }
 
-::selection { background: #4EAA85; color: #0A0A0A; }
+::selection { background: #F5A623; color: #0B1426; }
 
 /* Custom scroll for chat panel */
 .thin-scroll::-webkit-scrollbar { width: 6px; height: 6px; }

@@ -1,66 +1,58 @@
 import { Nav } from "@/components/nav";
-import { HeroPitch } from "@/components/hero-pitch";
-import { DecisionTerminal } from "@/components/decision-terminal";
-import { LivePulse } from "@/components/live-pulse";
-import { VisualReport } from "@/components/visual-report";
-import { StrategyHeatmap } from "@/components/strategy-heatmap";
-import { BacktestChart } from "@/components/backtest-chart";
-import { AiDemo } from "@/components/ai-demo";
-import { TechStack } from "@/components/tech-stack";
-import { HowItWorks } from "@/components/how-it-works";
-import { NewsFeed } from "@/components/news-feed";
-import { GithubCta } from "@/components/github-cta";
-import { Faq } from "@/components/faq";
-import { DataProvenance } from "@/components/data-provenance";
+import { MarketPulse } from "@/components/market-pulse";
 import { Footer } from "@/components/footer";
 
+/**
+ * v2.0 — 從 0 重做
+ *
+ * 設計取向：大膽當代（深藍 + 金 + 桃紅）/ Webull / Toss / 韓系證券 app 風
+ * 願景：retail 投資人不用看盤，打開就知道今天該不該動
+ *
+ * 本檔目前只有 Hero (Market Pulse)，下一階段會加：
+ *   - sector-scanner (100 檔 grid)
+ *   - watchlist (localStorage)
+ *   - news-pulse (20-50 條)
+ *   - ai-advisor (Gemma 4 streaming)
+ *   - data-provenance footer
+ */
 export default function Page() {
   return (
-    <>
+    <div className="min-h-screen" style={{ background: "#0B1426" }}>
       <Nav />
       <main>
-        {/* 1. HERO — Apple 風 minimal landing：單一 spotlight 卡片 + 動畫 + scroll 引導 */}
-        <HeroPitch />
+        <MarketPulse />
 
-        {/* ── Scroll 後才顯露 ── */}
-
-        {/* 2. Decision Terminal — 12 卡完整資料層 */}
-        <section id="decision"><DecisionTerminal /></section>
-
-        {/* 3. 即時報價跑馬燈 */}
-        <LivePulse />
-
-        {/* 4. 視覺化每日報告 4 卡 */}
-        <VisualReport />
-
-        {/* 5. 即時新聞 feed */}
-        <NewsFeed />
-
-        {/* 6. 策略 × 股票 heatmap */}
-        <section id="strategy"><StrategyHeatmap /></section>
-
-        {/* 7. 12 個月回測 */}
-        <section id="backtest"><BacktestChart /></section>
-
-        {/* 8. How It Works 系統流程 */}
-        <HowItWorks />
-
-        {/* 9. AI Demo */}
-        <AiDemo />
-
-        {/* 10. 技術棧 */}
-        <section id="tech"><TechStack /></section>
-
-        {/* 11. Data Provenance — 解 user 批評「數據黑盒」 */}
-        <DataProvenance />
-
-        {/* 12. GitHub CTA */}
-        <GithubCta />
-
-        {/* 13. FAQ */}
-        <Faq />
+        {/* Coming Soon stub — 之後 phases 會填 */}
+        <section
+          className="py-16"
+          style={{
+            background: "#070D1A",
+            borderTop: "1px solid rgba(245,166,35,0.08)",
+            borderBottom: "1px solid rgba(245,166,35,0.08)",
+          }}
+        >
+          <div className="max-w-[1280px] mx-auto px-6 lg:px-10 text-center">
+            <div
+              className="text-[10px] font-mono uppercase tracking-[0.3em] mb-3"
+              style={{ color: "#F5A623" }}
+            >
+              v2 building in progress
+            </div>
+            <h2
+              className="text-[28px] sm:text-[36px] tracking-[-0.03em]"
+              style={{ color: "#F4F6FA", fontWeight: 510 }}
+            >
+              下一階段：100 檔 Sector Scanner · Watchlist · News Pulse · AI 顧問
+            </h2>
+            <p className="mt-3 text-[14px]" style={{ color: "#A9B3C4" }}>
+              已完成（v2 第 1 階段）：Market Pulse Hero · 大膽當代配色 · 多源資料抽象
+              <br />
+              開發中：100 檔即時 grid · 個人 watchlist (localStorage) · 20-50 條多源新聞 · Gemma 4 31B 顧問 chat
+            </p>
+          </div>
+        </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
