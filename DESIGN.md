@@ -1,128 +1,137 @@
-# DESIGN.md · 每日股市儀表板 v2.1
+# DESIGN.md · 每日股市儀表板 v2.2
 
-> **風格混搭**：主 **Notion**（warm neutrals + 閱讀友善 + ultra-thin borders）/ 輔 **Pinterest**（magazine layout + 暖沙色階）
-> 來源：[VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+> **風格**：Cinematic Dark（NVIDIA × RunwayML 混搭）
+> 來源：[VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) + 9 aesthetic families framework from [rohitg00/awesome-claude-design](https://github.com/rohitg00/awesome-claude-design)
 
 ## 1. 視覺氛圍
 
-「**金融日報攤在窗邊咖啡桌**」— 不是 Bloomberg Terminal、不是 trading app、不是科技公司 dashboard，是**溫柔閱讀**的雜誌感。
+「**電影預告片黑底打開的瞬間**」— 全黑底、超大字、電影級對比、無 shadow 干擾。讓資料像電影海報，每張卡都是一幀。
 
-- 純白底（warm white #FAF9F6）讓眼睛舒服
-- 文字用 warm near-black（`rgba(33,25,34,0.95)` 帶一點 plum 色，**不用純黑**）
-- ultra-thin borders（`1px solid rgba(0,0,0,0.08)`）— 結構在但幾乎看不到
-- Photography / sparkline 大留白，magazine-style 排版
-- 紅綠用 muted 色（不要熒光色），偏 editorial 印刷風
+- 全黑背景（`#000000` / `#0A0A0A` / `#1A1A1A` 三層深淺）
+- 超大字 + 緊密 line-height（1.0–1.1）+ 負字距（-1px ~ -1.5px）
+- 單一 sans-serif（Inter/Geist 替代 abcNormal/NVIDIA-EMEA），同字型完成所有 hierarchy
+- **零 shadow / 邊框幾乎隱形**（`#27272A` 1px，dim）
+- 一個 saturated accent — Cinematic Amber `#FF6B00`（電影火光，不是 mint 不是螢光）
+- 紅綠用 **muted 深色版**（不是螢光）
 
 ## 2. Color Palette
 
-### Surface
-- **Warm White** `#FAF9F6` — 主背景（帶微暖意，比純白舒服）
-- **Cream** `#F5F4EF` — 次層卡片（warm sand 微差）
-- **Warm Border** `rgba(33,25,34,0.08)` — 通用邊框，whisper-weight
+### Surface（黑深淺三層）
+- **True Black** `#000000` — 主背景，最大對比
+- **Deep Black** `#0A0A0A` — 次層卡片
+- **Surface Dark** `#1A1A1A` — 第三層 elevated card
+- **Border Dim** `#27272A` — 唯一邊框色，1-2px sharp（不要圓角太多）
 
 ### Text
-- **Plum Near-Black** `rgba(33,25,34,0.95)` — 主文字（warm dark，不是純黑）
-- **Olive Gray 600** `#62625B` — 副文字（暖灰）
-- **Olive Gray 400** `#91918C` — 提示 / 圖說
-- **Olive Gray 300** `#A39E98` — disabled / 占位
+- **Pure White** `#FFFFFF` — 主標題 / hero
+- **Cool Silver** `#C9CCD1` — 副文字 / lead paragraph
+- **Cool Slate** `#767D88` — caption / metadata（cool blue-gray，不是純灰）
+- **Muted Gray** `#5E5E5E` — disabled / placeholder
 
-### Brand Accent（**節制**，每段最多 1 處）
-- **Editorial Ink** `#211922` — primary，深 plum 黑當主 accent
-- **Editorial Red** `#A23E3E` — 跌（暖磚紅，不是螢光紅）
-- **Editorial Green** `#3E7A52` — 漲（深苔蘚綠，不是 mint 不是螢光綠）
-- **Highlight Yellow** `#F2E8C9` — 重點背景（雜誌標籤紙感）
-- **Indigo Pop** `#3B4F8C` — 連結 / interactive accent（莫蘭迪藍）
+### Accent — One Saturated Color Only
+- **Cinematic Amber** `#FF6B00` — CTA / hover / active / link 唯一 accent
+- **Amber Hover** `#FF8533` — hover 較亮
+- **Amber Soft** `#1F1006` — accent 卡片底（amber 4% mix on black）
 
-### Status (Muted)
-- **Bull Soft** `#3E7A52` (深綠 muted)
-- **Bear Soft** `#A23E3E` (磚紅 muted)
-- **Warn Sand** `#C18A3D` (赭色，不是橘)
+### Status — Muted, Not Neon
+- **Bull Dark** `#3F8500` — 漲（深苔蘚綠，**不是 mint，不是螢光**）
+- **Bear Crimson** `#E5484D` — 跌（深紅，cinematic）
+- **Warn Orange** `#DF6500` — 警示（橙）
 
-## 3. Typography（雜誌排版）
+## 3. Typography（電影感大字）
 
 ### 字型
-- **Headline**: 系統 serif (`"Iowan Old Style", "Palatino", "Georgia", serif`) — **重點：標題用 serif**，這是雜誌風的關鍵
-- **Body**: Geist Sans 已有的，body 跟導覽用 sans
-- **Numerals**: Geist Mono（`tabular-nums` 必開）
+- **Display + Body**: Geist Sans（已有）— 替代 abcNormal/NVIDIA-EMEA
+- **Numerals**: Geist Mono（`tabular-nums` 必開，`-0.02em` letter-spacing）
 
-### Hierarchy
+### Hierarchy（**緊 line-height 1.0** + 負字距）
 
-| Role | Font | Size | Weight | Line | Letter |
-|---|---|---|---|---|---|
-| Display Hero | **serif** | 56-72px | 400 (regular) | 1.05 | -0.02em |
-| Section Headline | **serif** | 32-40px | 400 | 1.15 | -0.01em |
-| Sub-heading | **serif italic** | 22-26px | 400 italic | 1.25 | normal |
-| Body Lead | sans | 18px | 400 | 1.55 | normal |
-| Body | sans | 15px | 400 | 1.6 | normal |
-| Small Label | sans | 11-12px | 500 | 1.4 | 0.04em uppercase |
-| Numeric | mono `tnum` | varies | 500 | 1.0 | tracking-tight |
+| Role | Size | Weight | Line | Letter |
+|---|---|---|---|---|
+| Display / Hero | 80–96px | 500 | **1.00** (tight) | **-1.2px** to -1.5px |
+| Section Heading | 48–64px | 500 | 1.0 | -1.0px |
+| Sub-heading | 32–40px | 400 | 1.05 | -0.6px |
+| Card Title | 20–24px | 600 | 1.05 | normal |
+| Body Lead | 18px | 400 | 1.5 | -0.2px |
+| Body | 15–16px | 400 | 1.4 | -0.16px |
+| **Label uppercase** | 11–12px | 500 | 1.3 | **0.35px** uppercase |
+| Numeric | mono `tnum` | 500 | 1.0 | -0.02em |
 
-**核心**：headline 用 **serif italic** 是雜誌靈魂，不要用 sans-serif。
+**核心**：display 字級**緊**到像 film title，**沒有**呼吸空間。
 
 ## 4. Spacing & Shape
 
-### Spacing scale (8px base)
-8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128
-
-### Border radius
-- **Cards**: `16px` (Pinterest-warm radius)
-- **Buttons**: `9999px`（pill）or `8px`
-- **Tags / chips**: `999px` pill
-- **Images / sparkline**: `4px` 微圓
-
-### Shadow（whisper-weight，借 Notion）
-```css
-box-shadow:
-  rgba(33,25,34,0.04) 0px 4px 18px,
-  rgba(33,25,34,0.02) 0px 2px 7.8px,
-  rgba(33,25,34,0.01) 0px 0.8px 2.9px;
-```
-**禁止**：glow / saturated 光暈 / neon shadow（那是 AI 味）
+- spacing scale：8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128 / 192
+- **Border radius 小**：cards 4–6px（**不是 16px**），buttons 4px or 0px sharp
+- **Zero shadow**（RunwayML 風）— 或最多 `0 0 0 1px #27272A` outline
+- **大量留白**（cinematic letterboxing） + full-bleed 大區塊
 
 ## 5. Component Patterns
 
-- **Card**: `#FAF9F6` 或白底，1px whisper border，16px radius，24px padding，whisper shadow
-- **Primary Button**: 實心 `#211922`，文字白，pill or 8px
-- **Secondary Button**: outline-only `1px solid rgba(33,25,34,0.15)`
-- **Tag**: pill bg `#F5F4EF`，selected → bg `#211922` text `#FAF9F6`
-- **Stock card**: 不要 emoji，price 用 mono tnum，漲跌 muted，sparkline 1px thin
-- **Magazine section**: eyebrow（小寫小字 letter-spacing 0.2em）→ serif headline → italic sub → body lead
+### Card
+- bg: `#0A0A0A` or `#1A1A1A`
+- border: `1px solid #27272A`
+- radius: `4-6px` sharp
+- padding: `24-32px`
+- **沒有 shadow**
+
+### Button
+- **Primary**: bg `#FF6B00` text white sharp 4px radius
+- **Secondary**: outline `1px solid #27272A`，text white
+- **Ghost**: 純文字 + amber underline on hover
+
+### Section Eyebrow
+```
+LABEL UPPERCASE 0.35px tracking · color: #767D88
+─────────────
+DISPLAY HEADLINE 80-96px white -1.2px tracking
+Sub-heading 32px Cool Silver
+```
+
+### Stock card
+- 黑底，1px dim border
+- price 用 mono tnum + 大字
+- 漲跌用 muted 紅綠 + arrow icon
+- 沒有 sparkle / glow
 
 ## 6. 動畫 / 互動
 
-- 慢、輕（Notion 風） — `cubic-bezier(0.21, 0.61, 0.35, 1)` 0.3-0.5s
-- ❌ 沒有 ping pulse / 沒有 LIVE 紅點動畫（雜誌不會閃）
-- hover: 微抬 `translateY(-2px)` + shadow 加深一階
-- focus: 暖灰 outline `2px solid rgba(33,25,34,0.2)`
+- 慢、film-frame 般 — `cubic-bezier(0.16, 1, 0.3, 1)` 0.4-0.6s
+- hover: amber underline 出現 + 微改變透明度（不是抬升不是 glow）
+- focus: 2px solid amber outline
+- ❌ 沒有 ping pulse / 沒有 LIVE 紅點
+- ✅ 大區塊 fade-up（cinematic）
 
 ## 7. 七條準則
 
-1. 背景永遠是 **warm white**，不是純黑不是純白
-2. **Headline 用 serif italic** — 雜誌靈魂
-3. Borders 是 whisper — 看得到結構但不顯眼
-4. 紅綠 **muted** — 不要螢光，要印刷雜誌色
-5. 每個 section 最多 **1 個 accent** — 雜誌不喧鬧
-6. **大量留白** — 不要 grid 塞滿
-7. 數字用 **mono `tabular-nums`** — 對齊乾淨
+1. **背景全黑** — `#000000` / `#0A0A0A` / `#1A1A1A`
+2. **字大、字緊** — display 80-96px line-height 1.0 -1.2px tracking
+3. **單一字型完成全部 hierarchy** — 用 size/weight/case 區別不換字
+4. **零 shadow / 邊框 dim 1px** — 介面隱形
+5. **一個 accent 色** — Cinematic Amber `#FF6B00`，**沒有別的 saturated color**
+6. **紅綠 muted 深色** — `#3F8500` 漲（深苔蘚）、`#E5484D` 跌
+7. **大量留白 + full-bleed** — cinematic letterboxing
 
-## 8. 不允許的（避開 AI 味）
+## 8. 禁止（避免回到之前風格）
 
-- ❌ 漸層背景（gradient overlay）
-- ❌ Glow shadow / neon
-- ❌ 螢光綠 / 螢光紅 / 金黃 accent（之前 v2.0 那套）
-- ❌ Sparkle ✦ icon（太 AI）
-- ❌ Marquee / 跑馬燈 ping pulse
-- ❌ 飽和 saturated 大塊色
-- ❌ 暗色模式 default（v2.1 主打 light mode 雜誌風）
+- ❌ 編輯雜誌 serif headline（v2.1 Notion 風）
+- ❌ 暖白 warm white 背景（v2.1）
+- ❌ 深藍 navy + 金 + 桃紅（v2.0）
+- ❌ Mint AI 綠 #4EAA85（v1）
+- ❌ Glow shadow / pulse / sparkle / gradient overlay
+- ❌ 多 accent 色 — 只有 amber 一個
+- ❌ Border radius > 8px（cinematic 偏 sharp）
+- ❌ Light mode default
 
-## 9. Dark mode（次要，以後做）
+## 9. 對標
 
-- bg: `#1A1614`（warm dark with plum，不是純黑）
-- text: `#F5F4EF`
-- border: `rgba(255,255,255,0.06)`
+- **NVIDIA**：industrial typography，high-contrast，sharp engineering corners
+- **RunwayML**：cinematic full-bleed，editorial magazine layout，zero shadow，single typeface
+- **混搭**：NVIDIA 的 dense 對比 + RunwayML 的 full-bleed 留白 + 一個 amber accent 取代 NVIDIA 螢光綠
 
 ---
 
-**版本**：v2.1
-**作者**：GKS (rule-based heuristic, MIT licensed)
-**對標**：FT Online · The Atlantic · Substack · Notion · Pinterest editorial sections
+**版本**：v2.2 Cinematic Dark
+**作者**：GKS
+**rohitg00 美學家族**：Cinematic Dark（家族 #5）
+**換掉的**：v2.1 Notion editorial（跟 InsightX 衝）、v2.0 Webull 大膽當代、v1 mint AI 綠

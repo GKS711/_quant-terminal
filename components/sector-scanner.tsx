@@ -5,10 +5,9 @@ import { Search } from "lucide-react";
 import { EXTENDED_UNIVERSE, EXTENDED_TOTAL, type ExtendedStock } from "@/lib/extended-universe";
 import { MARKETS, type Market } from "@/lib/portfolio";
 
-const SERIF = '"Iowan Old Style", "Palatino", "Georgia", serif';
-const INK = "#211922";
-const BULL = "#3E7A52";
-const BEAR = "#A23E3E";
+const AMBER = "#FF6B00";
+const BULL = "#3F8500";
+const BEAR = "#E5484D";
 
 function mockChange(symbol: string): number {
   let h = 0;
@@ -45,114 +44,129 @@ export function SectorScanner() {
   return (
     <section
       id="scanner"
-      className="py-20"
-      style={{ background: "#FAF9F6", borderTop: "1px solid rgba(33,25,34,0.08)" }}
+      className="py-24"
+      style={{ background: "#000000", borderBottom: "1px solid #27272A" }}
     >
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         <div
-          className="text-[10px] uppercase tracking-[0.2em] mb-3"
-          style={{ color: "#91918C", fontWeight: 590 }}
+          className="text-[11px] uppercase mb-6"
+          style={{ color: "#767D88", letterSpacing: "0.35px", fontWeight: 450 }}
         >
-          Markets · 市場一覽
+          ───  Markets  ·  全市場雷達  ───
         </div>
         <h2
-          className="text-[36px] sm:text-[44px] max-w-[760px] mb-3"
+          className="mb-4"
           style={{
-            fontFamily: SERIF,
-            color: INK,
-            fontWeight: 400,
-            lineHeight: 1.15,
-            letterSpacing: "-0.015em",
+            fontSize: "clamp(40px, 6vw, 64px)",
+            fontWeight: 500,
+            color: "#FFFFFF",
+            lineHeight: 1.0,
+            letterSpacing: "-1px",
           }}
         >
-          {EXTENDED_TOTAL} 檔，<span style={{ fontStyle: "italic" }}>一頁讀完</span>
+          {EXTENDED_TOTAL} 檔  <span style={{ color: AMBER }}>一頁讀完</span>
         </h2>
-        <p className="text-[15px] leading-relaxed max-w-[640px] mb-10" style={{ color: "#62625B" }}>
-          🇹🇼 台股 20 / 🇺🇸 美股 40 / 🇭🇰 港股 15 / 🇨🇳 A 股 15 / 🇯🇵 日股 10。
+        <p
+          className="text-[16px] mb-12 max-w-[640px]"
+          style={{ color: "#C9CCD1", letterSpacing: "-0.16px", lineHeight: 1.6 }}
+        >
+          🇹🇼 台股 20  ·  🇺🇸 美股 40  ·  🇭🇰 港股 15  ·  🇨🇳 A 股 15  ·  🇯🇵 日股 10。
           按市場、產業、漲跌排序。
         </p>
 
-        {/* Filters */}
+        {/* Filter bar — full width terminal style */}
         <div
-          className="flex flex-wrap items-center gap-2 mb-6 pb-6"
-          style={{ borderBottom: "1px solid rgba(33,25,34,0.08)" }}
+          className="flex flex-wrap items-center gap-2 mb-8 pb-6"
+          style={{ borderBottom: "1px solid #27272A" }}
         >
           {markets.map((m) => {
             const active = marketFilter === m;
-            const label = m === "ALL" ? "全部" : MARKETS[m]?.flag + " " + MARKETS[m]?.nameZh;
+            const label = m === "ALL" ? "ALL" : MARKETS[m]?.flag + " " + (MARKETS[m]?.code ?? m);
             const count = m === "ALL" ? EXTENDED_TOTAL : EXTENDED_UNIVERSE.filter((s) => s.market === m).length;
             return (
               <button
                 key={m}
                 onClick={() => setMarketFilter(m)}
-                className="px-3.5 py-1.5 rounded-full text-[12px] transition-colors"
+                className="px-3 py-1.5 text-[11px] uppercase transition-colors"
                 style={{
-                  background: active ? INK : "transparent",
-                  color: active ? "#FAF9F6" : "#62625B",
-                  border: active ? "none" : "1px solid rgba(33,25,34,0.12)",
-                  fontWeight: active ? 500 : 400,
+                  background: active ? AMBER : "transparent",
+                  color: active ? "#000000" : "#C9CCD1",
+                  border: active ? "none" : "1px solid #27272A",
+                  fontWeight: active ? 600 : 500,
+                  letterSpacing: "0.2px",
+                  borderRadius: "4px",
                 }}
               >
-                {label}
-                <span className="ml-1.5 opacity-60">{count}</span>
+                {label} <span className="opacity-60 ml-1">{count}</span>
               </button>
             );
           })}
 
-          <span style={{ color: "#A39E98" }} className="mx-1 text-[13px]">·</span>
+          <span style={{ color: "#5E5E5E" }} className="mx-2">|</span>
 
           {(["change", "name", "cap"] as const).map((s) => (
             <button
               key={s}
               onClick={() => setSortBy(s)}
-              className="px-3 py-1.5 text-[12px]"
+              className="text-[11px] uppercase px-2 py-1.5 transition-colors"
               style={{
-                color: sortBy === s ? INK : "#91918C",
-                fontWeight: sortBy === s ? 500 : 400,
-                fontFamily: sortBy === s ? SERIF : undefined,
-                fontStyle: sortBy === s ? "italic" : "normal",
+                color: sortBy === s ? AMBER : "#767D88",
+                fontWeight: sortBy === s ? 600 : 450,
+                letterSpacing: "0.35px",
+                borderBottom: sortBy === s ? `1px solid ${AMBER}` : "1px solid transparent",
               }}
             >
-              {s === "change" ? "漲跌" : s === "name" ? "代號" : "市值"}
+              {s === "change" ? "Δ%" : s === "name" ? "Name" : "Cap"}
             </button>
           ))}
 
           <div
-            className="ml-auto flex items-center gap-2 px-3 py-1.5 rounded-full text-[12px]"
+            className="ml-auto flex items-center gap-2 px-3 py-1.5 text-[12px]"
             style={{
-              border: "1px solid rgba(33,25,34,0.12)",
-              minWidth: 220,
+              border: "1px solid #27272A",
+              minWidth: 240,
+              borderRadius: "4px",
+              background: "#0A0A0A",
             }}
           >
-            <Search className="h-3 w-3" style={{ color: "#91918C" }} />
+            <Search className="h-3 w-3" style={{ color: "#767D88" }} />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="搜尋代號 / 名稱 / 產業…"
-              className="flex-1 bg-transparent outline-none"
-              style={{ color: INK }}
+              placeholder="search ticker / name / sector"
+              className="flex-1 bg-transparent outline-none font-mono"
+              style={{ color: "#FFFFFF", letterSpacing: "-0.16px" }}
             />
             {search && (
-              <button onClick={() => setSearch("")} style={{ color: "#91918C" }}>×</button>
+              <button onClick={() => setSearch("")} style={{ color: "#767D88" }}>×</button>
             )}
           </div>
         </div>
 
-        <div className="text-[11px] mb-4" style={{ color: "#A39E98" }}>
-          顯示 {filtered.length} / {EXTENDED_TOTAL} 檔
+        <div
+          className="text-[10px] uppercase mb-4 font-mono"
+          style={{ color: "#5E5E5E", letterSpacing: "0.35px" }}
+        >
+          showing {filtered.length} / {EXTENDED_TOTAL}
         </div>
 
-        {/* Editorial grid — magazine column layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px" style={{ background: "rgba(33,25,34,0.06)" }}>
+        {/* Tight grid — 1px hairline separators */}
+        <div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px"
+          style={{ background: "#27272A" }}
+        >
           {filtered.map((s) => (
             <StockTile key={s.symbol} stock={s} />
           ))}
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-12 text-[14px]" style={{ color: "#91918C", fontFamily: SERIF, fontStyle: "italic" }}>
-            沒有匹配的標的。
+          <div
+            className="text-center py-12 text-[14px] uppercase"
+            style={{ color: "#767D88", letterSpacing: "0.35px" }}
+          >
+            no results
           </div>
         )}
       </div>
@@ -166,32 +180,33 @@ function StockTile({ stock }: { stock: ExtendedStock }) {
   const market = MARKETS[stock.market];
   return (
     <button
-      className="text-left p-3.5 transition-colors"
-      style={{
-        background: "#FAF9F6",
-      }}
+      className="text-left p-4 transition-colors group"
+      style={{ background: "#000000" }}
     >
-      <div className="flex items-baseline justify-between gap-1 mb-1.5">
+      <div className="flex items-baseline justify-between gap-1 mb-2">
         <div className="flex items-baseline gap-1.5 min-w-0">
           <span className="text-[13px]">{market?.flag}</span>
           <span
-            className="text-[13px] font-mono tabular-nums truncate"
-            style={{ color: INK, fontWeight: 500 }}
+            className="text-[14px] font-mono tabular-nums truncate"
+            style={{ color: "#FFFFFF", fontWeight: 500, letterSpacing: "-0.16px" }}
           >
             {stock.shortCode}
           </span>
         </div>
         <span
-          className="text-[12px] font-mono tabular-nums flex-shrink-0"
-          style={{ color: positive ? BULL : BEAR, fontWeight: 500 }}
+          className="text-[13px] font-mono tabular-nums flex-shrink-0"
+          style={{ color: positive ? BULL : BEAR, fontWeight: 500, letterSpacing: "-0.2px" }}
         >
-          {positive ? "+" : ""}{change.toFixed(2)}%
+          {positive ? "+" : ""}{change.toFixed(2)}
         </span>
       </div>
-      <div className="text-[11px] truncate mb-1" style={{ color: "#62625B", fontFamily: SERIF }}>
+      <div className="text-[11px] truncate" style={{ color: "#C9CCD1" }}>
         {stock.name}
       </div>
-      <div className="text-[9px] uppercase tracking-[0.1em]" style={{ color: "#A39E98" }}>
+      <div
+        className="mt-1.5 text-[9px] uppercase font-mono"
+        style={{ color: "#767D88", letterSpacing: "0.35px", fontWeight: 450 }}
+      >
         {stock.sector}
       </div>
     </button>

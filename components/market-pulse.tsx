@@ -1,332 +1,298 @@
 "use client";
 
-const SERIF = '"Iowan Old Style", "Palatino", "Georgia", serif';
-const INK = "#211922";
-const BULL = "#3E7A52";
-const BEAR = "#A23E3E";
+const AMBER = "#FF6B00";
+const BULL = "#3F8500";
+const BEAR = "#E5484D";
 
 const MARKETS = [
-  { flag: "🇹🇼", name: "台股", change: 1.42 },
-  { flag: "🇺🇸", name: "美股", change: 0.83 },
-  { flag: "🇭🇰", name: "港股", change: -0.51 },
-  { flag: "🇨🇳", name: "A 股", change: 0.27 },
-  { flag: "🇯🇵", name: "日股", change: 0.96 },
+  { flag: "🇹🇼", code: "TWII", name: "台股", change: 1.42 },
+  { flag: "🇺🇸", code: "SPX",  name: "美股", change: 0.83 },
+  { flag: "🇭🇰", code: "HSI",  name: "港股", change: -0.51 },
+  { flag: "🇨🇳", code: "SHCOMP", name: "A 股", change: 0.27 },
+  { flag: "🇯🇵", code: "N225", name: "日股", change: 0.96 },
 ];
 
 const TOP_OPPORTUNITIES = [
-  { code: "NVDA", name: "NVIDIA", change: 7.99, signal: "AI 訊號 BUY · 30 日累漲 15.55%" },
-  { code: "2330", name: "台積電", change: 3.42, signal: "MA 多頭排列 · 法人連 5 日買超" },
-  { code: "TSLA", name: "Tesla", change: 5.18, signal: "MACD 黃金交叉 · 機構評等上修" },
+  { code: "NVDA", name: "NVIDIA", change: 7.99, signal: "AI BUY · 30D +15.55%" },
+  { code: "2330", name: "TSMC",   change: 3.42, signal: "MA BULL ALIGN · INST +5D" },
+  { code: "TSLA", name: "Tesla",  change: 5.18, signal: "MACD GOLD CROSS · INST UPGRADE" },
 ];
 
 const TOP_RISKS = [
-  { code: "INTC", name: "Intel", change: -4.21, signal: "RSI 過熱 · 短線過漲過快" },
-  { code: "0700", name: "騰訊", change: -2.85, signal: "成交量放大 · 籌碼鬆動" },
-  { code: "BABA", name: "阿里", change: -3.12, signal: "跌破 MA20 · 動能轉弱" },
+  { code: "INTC", name: "Intel",   change: -4.21, signal: "RSI OVERBOUGHT · TOO FAST" },
+  { code: "0700", name: "Tencent", change: -2.85, signal: "VOL SPIKE · CHIPS LOOSE" },
+  { code: "BABA", name: "Alibaba", change: -3.12, signal: "BREAK MA20 · MOM WEAK" },
 ];
 
 export function MarketPulse() {
   return (
-    <section className="relative" style={{ background: "#FAF9F6" }}>
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-8 pt-20 pb-16">
-        {/* Magazine masthead row */}
-        <div className="flex items-center gap-4 mb-12">
-          <div
-            className="text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: "#91918C", fontWeight: 500 }}
-          >
-            Vol. 1 · {new Date().toLocaleDateString("zh-TW", { year: "numeric", month: "long", day: "numeric" })}
-          </div>
-          <div className="flex-1 h-px" style={{ background: "rgba(33,25,34,0.08)" }} />
-          <div
-            className="text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: "#91918C", fontWeight: 500 }}
-          >
-            Morning Brief · 雙語金融日報
-          </div>
-        </div>
-
-        {/* Hero — magazine cover headline */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          <div className="lg:col-span-8">
-            <div
-              className="text-[10px] uppercase tracking-[0.2em] mb-4"
-              style={{ color: "#A23E3E", fontWeight: 590 }}
-            >
-              Cover Story · 今日封面
-            </div>
-            <h1
-              className="text-[44px] sm:text-[60px] lg:text-[76px]"
-              style={{
-                fontFamily: SERIF,
-                fontWeight: 400,
-                color: INK,
-                lineHeight: 1.05,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              打開就知道,
-              <br />
-              <span style={{ fontStyle: "italic" }}>今天該不該動。</span>
-            </h1>
-
-            <p
-              className="mt-6 text-[17px] leading-[1.6] max-w-[560px]"
-              style={{ color: "#62625B" }}
-            >
-              一份替你掃完全球 5 國市場、11 種策略訊號、24 小時新聞情緒的早報。
-              我們把繁雜的圖表收進頁面深處，留下一頁讓你
-              <span
-                style={{
-                  background: "#F2E8C9",
-                  padding: "0 4px",
-                  color: INK,
-                }}
-              >
-                安靜閱讀
-              </span>
-              。
-            </p>
-
-            {/* AI Brief — pull quote magazine style */}
-            <div
-              className="mt-10 pl-6 border-l-2"
-              style={{ borderColor: INK }}
-            >
-              <div
-                className="text-[10px] uppercase tracking-[0.2em] mb-2"
-                style={{ color: "#91918C", fontWeight: 590 }}
-              >
-                AI Editor · Gemma 4 31B
-              </div>
-              <p
-                className="text-[20px] sm:text-[24px] leading-[1.5]"
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontWeight: 400,
-                  color: INK,
-                }}
-              >
-                「美股昨夜創高，AI 半導體領漲；台股早盤可關注台積電與 NVIDIA 連動。
-                港股恆生跌破 5 日均線，等反彈訊號再進場。」
-              </p>
-            </div>
-          </div>
-
-          {/* Right: Market index strip — vertical magazine sidebar */}
-          <aside className="lg:col-span-4">
-            <div
-              className="text-[10px] uppercase tracking-[0.2em] mb-4"
-              style={{ color: "#91918C", fontWeight: 590 }}
-            >
-              Index · 今日指數
-            </div>
-            <div className="space-y-2.5">
-              {MARKETS.map((m) => {
-                const isUp = m.change >= 0;
-                return (
-                  <div
-                    key={m.name}
-                    className="flex items-baseline justify-between py-2.5"
-                    style={{ borderBottom: "1px solid rgba(33,25,34,0.08)" }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="text-[18px]">{m.flag}</span>
-                      <span
-                        className="text-[15px]"
-                        style={{
-                          fontFamily: SERIF,
-                          color: INK,
-                          fontWeight: 400,
-                        }}
-                      >
-                        {m.name}
-                      </span>
-                    </div>
-                    <span
-                      className="text-[14px] font-mono tabular-nums"
-                      style={{ color: isUp ? BULL : BEAR, fontWeight: 500 }}
-                    >
-                      {isUp ? "+" : ""}{m.change.toFixed(2)}%
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </aside>
-        </div>
-
-        {/* 2-column editorial: Opportunities + Risks */}
+    <section
+      className="relative"
+      style={{ background: "#000000", borderBottom: "1px solid #27272A" }}
+    >
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 pt-24 pb-20">
+        {/* Eyebrow */}
         <div
-          className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 pt-12"
-          style={{ borderTop: "1px solid rgba(33,25,34,0.08)" }}
+          className="text-[11px] uppercase mb-6"
+          style={{
+            color: "#767D88",
+            letterSpacing: "0.35px",
+            fontWeight: 450,
+          }}
         >
-          {/* Opportunities */}
-          <article>
-            <div
-              className="text-[10px] uppercase tracking-[0.2em] mb-3"
-              style={{ color: BULL, fontWeight: 590 }}
-            >
-              Watchworthy · 值得留意
-            </div>
-            <h2
-              className="text-[28px] mb-5"
-              style={{
-                fontFamily: SERIF,
-                color: INK,
-                fontWeight: 400,
-                lineHeight: 1.2,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              今日{" "}
-              <span style={{ fontStyle: "italic" }}>三檔機會</span>
-            </h2>
-            <div className="space-y-5">
-              {TOP_OPPORTUNITIES.map((s, i) => (
-                <article key={s.code}>
-                  <div className="flex items-baseline justify-between gap-4 mb-1">
-                    <div className="flex items-baseline gap-2">
-                      <span
-                        className="text-[12px] font-mono tabular-nums"
-                        style={{ color: "#91918C" }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <h3
-                        className="text-[20px]"
-                        style={{
-                          fontFamily: SERIF,
-                          color: INK,
-                          fontWeight: 400,
-                        }}
-                      >
-                        {s.name}{" "}
-                        <span
-                          className="text-[14px] font-mono"
-                          style={{ color: "#91918C" }}
-                        >
-                          / {s.code}
-                        </span>
-                      </h3>
-                    </div>
-                    <span
-                      className="text-[15px] font-mono tabular-nums"
-                      style={{ color: BULL, fontWeight: 500 }}
-                    >
-                      +{s.change.toFixed(2)}%
-                    </span>
-                  </div>
-                  <p
-                    className="text-[13px] leading-relaxed pl-7"
-                    style={{ color: "#62625B" }}
-                  >
-                    {s.signal}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </article>
-
-          {/* Risks */}
-          <article>
-            <div
-              className="text-[10px] uppercase tracking-[0.2em] mb-3"
-              style={{ color: BEAR, fontWeight: 590 }}
-            >
-              Caution · 今日警示
-            </div>
-            <h2
-              className="text-[28px] mb-5"
-              style={{
-                fontFamily: SERIF,
-                color: INK,
-                fontWeight: 400,
-                lineHeight: 1.2,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              三檔{" "}
-              <span style={{ fontStyle: "italic" }}>請放慢手</span>
-            </h2>
-            <div className="space-y-5">
-              {TOP_RISKS.map((s, i) => (
-                <article key={s.code}>
-                  <div className="flex items-baseline justify-between gap-4 mb-1">
-                    <div className="flex items-baseline gap-2">
-                      <span
-                        className="text-[12px] font-mono tabular-nums"
-                        style={{ color: "#91918C" }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <h3
-                        className="text-[20px]"
-                        style={{
-                          fontFamily: SERIF,
-                          color: INK,
-                          fontWeight: 400,
-                        }}
-                      >
-                        {s.name}{" "}
-                        <span
-                          className="text-[14px] font-mono"
-                          style={{ color: "#91918C" }}
-                        >
-                          / {s.code}
-                        </span>
-                      </h3>
-                    </div>
-                    <span
-                      className="text-[15px] font-mono tabular-nums"
-                      style={{ color: BEAR, fontWeight: 500 }}
-                    >
-                      {s.change.toFixed(2)}%
-                    </span>
-                  </div>
-                  <p
-                    className="text-[13px] leading-relaxed pl-7"
-                    style={{ color: "#62625B" }}
-                  >
-                    {s.signal}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </article>
+          ───  Market Pulse  ·  Vol. 1  ·  {new Date().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "2-digit" })}  ───
         </div>
 
-        {/* Footer CTA — minimal, no gradient */}
-        <div
-          className="mt-16 pt-8 flex flex-wrap items-center gap-3"
-          style={{ borderTop: "1px solid rgba(33,25,34,0.08)" }}
+        {/* Display Hero — film title */}
+        <h1
+          className="max-w-[1100px]"
+          style={{
+            fontSize: "clamp(56px, 9vw, 96px)",
+            fontWeight: 500,
+            color: "#FFFFFF",
+            lineHeight: 1.0,
+            letterSpacing: "-1.5px",
+          }}
         >
-          <button
-            className="px-6 py-2.5 rounded-full text-[13px] transition-colors"
+          打開就知道<br />
+          <span style={{ color: AMBER }}>今天該不該動</span>
+        </h1>
+
+        <p
+          className="mt-8 max-w-[640px]"
+          style={{
+            fontSize: "18px",
+            color: "#C9CCD1",
+            lineHeight: 1.55,
+            letterSpacing: "-0.16px",
+          }}
+        >
+          AI 替你掃完全球 5 國 100 檔 + 50 條 24h 新聞 + 11 種策略訊號，
+          30 秒給你今日決策參考。
+        </p>
+
+        {/* AI Brief — full-bleed quote bar */}
+        <div
+          className="mt-16 py-10 px-8 lg:px-12"
+          style={{
+            background: "#0A0A0A",
+            borderLeft: `2px solid ${AMBER}`,
+          }}
+        >
+          <div
+            className="text-[11px] uppercase mb-4"
             style={{
-              background: INK,
-              color: "#FAF9F6",
+              color: AMBER,
+              letterSpacing: "0.35px",
               fontWeight: 500,
             }}
           >
-            繼續閱讀完整儀表板 →
-          </button>
-          <button
-            className="px-6 py-2.5 rounded-full text-[13px]"
+            AI Editor · Gemma 4 31B
+          </div>
+          <p
             style={{
-              background: "transparent",
-              color: INK,
-              border: "1px solid rgba(33,25,34,0.15)",
+              fontSize: "clamp(20px, 2.6vw, 30px)",
+              fontWeight: 400,
+              color: "#FFFFFF",
+              lineHeight: 1.25,
+              letterSpacing: "-0.6px",
+              maxWidth: "920px",
             }}
           >
-            問 AI 編輯
+            美股昨夜創高，AI 半導體領漲；台股早盤可關注台積電與 NVIDIA 連動。港股恆生跌破 5 日均線，等反彈訊號再進場。
+          </p>
+        </div>
+
+        {/* Market index strip — 5 col tight grid */}
+        <div
+          className="mt-16 grid grid-cols-2 sm:grid-cols-5 gap-px"
+          style={{ background: "#27272A" }}
+        >
+          {MARKETS.map((m) => {
+            const up = m.change >= 0;
+            return (
+              <div
+                key={m.code}
+                className="px-5 py-6"
+                style={{ background: "#000000" }}
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-[18px]">{m.flag}</span>
+                  <span
+                    className="text-[10px] uppercase font-mono"
+                    style={{ color: "#767D88", letterSpacing: "0.35px", fontWeight: 500 }}
+                  >
+                    {m.code}
+                  </span>
+                </div>
+                <div
+                  className="text-[11px] uppercase mb-1.5"
+                  style={{ color: "#C9CCD1", letterSpacing: "0.2px" }}
+                >
+                  {m.name}
+                </div>
+                <div
+                  className="font-mono tabular-nums"
+                  style={{
+                    fontSize: "26px",
+                    fontWeight: 500,
+                    color: up ? BULL : BEAR,
+                    letterSpacing: "-0.5px",
+                    lineHeight: 1.0,
+                  }}
+                >
+                  {up ? "+" : ""}{m.change.toFixed(2)}<span className="text-[14px] opacity-60">%</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 2 col: Opps + Risks */}
+        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-px" style={{ background: "#27272A" }}>
+          {/* Opps */}
+          <div style={{ background: "#000000" }} className="p-8">
+            <div
+              className="text-[11px] uppercase mb-6"
+              style={{ color: BULL, letterSpacing: "0.35px", fontWeight: 500 }}
+            >
+              ↑  Watchworthy  ·  今日機會
+            </div>
+            <div className="space-y-6">
+              {TOP_OPPORTUNITIES.map((s, i) => (
+                <article key={s.code} className="flex items-start justify-between gap-4 group">
+                  <div className="flex items-baseline gap-3 min-w-0">
+                    <span
+                      className="text-[12px] font-mono tabular-nums flex-shrink-0"
+                      style={{ color: "#767D88" }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0">
+                      <h3
+                        className="text-[26px] truncate"
+                        style={{
+                          color: "#FFFFFF",
+                          fontWeight: 500,
+                          lineHeight: 1.0,
+                          letterSpacing: "-0.5px",
+                        }}
+                      >
+                        {s.name}{" "}
+                        <span
+                          className="text-[14px] font-mono"
+                          style={{ color: "#767D88" }}
+                        >
+                          {s.code}
+                        </span>
+                      </h3>
+                      <div
+                        className="mt-2 text-[11px] uppercase font-mono"
+                        style={{ color: "#767D88", letterSpacing: "0.35px" }}
+                      >
+                        {s.signal}
+                      </div>
+                    </div>
+                  </div>
+                  <span
+                    className="text-[20px] font-mono tabular-nums flex-shrink-0"
+                    style={{ color: BULL, fontWeight: 500, letterSpacing: "-0.4px" }}
+                  >
+                    +{s.change.toFixed(2)}%
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Risks */}
+          <div style={{ background: "#000000" }} className="p-8">
+            <div
+              className="text-[11px] uppercase mb-6"
+              style={{ color: BEAR, letterSpacing: "0.35px", fontWeight: 500 }}
+            >
+              ↓  Caution  ·  今日警示
+            </div>
+            <div className="space-y-6">
+              {TOP_RISKS.map((s, i) => (
+                <article key={s.code} className="flex items-start justify-between gap-4">
+                  <div className="flex items-baseline gap-3 min-w-0">
+                    <span
+                      className="text-[12px] font-mono tabular-nums flex-shrink-0"
+                      style={{ color: "#767D88" }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0">
+                      <h3
+                        className="text-[26px] truncate"
+                        style={{
+                          color: "#FFFFFF",
+                          fontWeight: 500,
+                          lineHeight: 1.0,
+                          letterSpacing: "-0.5px",
+                        }}
+                      >
+                        {s.name}{" "}
+                        <span
+                          className="text-[14px] font-mono"
+                          style={{ color: "#767D88" }}
+                        >
+                          {s.code}
+                        </span>
+                      </h3>
+                      <div
+                        className="mt-2 text-[11px] uppercase font-mono"
+                        style={{ color: "#767D88", letterSpacing: "0.35px" }}
+                      >
+                        {s.signal}
+                      </div>
+                    </div>
+                  </div>
+                  <span
+                    className="text-[20px] font-mono tabular-nums flex-shrink-0"
+                    style={{ color: BEAR, fontWeight: 500, letterSpacing: "-0.4px" }}
+                  >
+                    {s.change.toFixed(2)}%
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-20 flex flex-wrap items-center gap-4">
+          <button
+            className="px-8 py-3 text-[12px] uppercase transition-colors"
+            style={{
+              background: AMBER,
+              color: "#000000",
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+              borderRadius: "4px",
+            }}
+          >
+            Open Dashboard ↗
+          </button>
+          <button
+            className="px-8 py-3 text-[12px] uppercase transition-colors"
+            style={{
+              background: "transparent",
+              color: "#FFFFFF",
+              border: "1px solid #27272A",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              borderRadius: "4px",
+            }}
+          >
+            Ask AI Editor
           </button>
           <span
-            className="ml-auto text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: "#91918C" }}
+            className="ml-auto text-[10px] uppercase font-mono"
+            style={{ color: "#5E5E5E", letterSpacing: "0.35px" }}
           >
-            Issue · v2.1 · Editorial
+            v2.2  ·  Cinematic  ·  Issue 001
           </span>
         </div>
       </div>

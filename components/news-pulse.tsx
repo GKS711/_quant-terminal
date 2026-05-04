@@ -3,10 +3,9 @@
 import { useState, useEffect } from "react";
 import { Clock, ExternalLink, RefreshCw } from "lucide-react";
 
-const SERIF = '"Iowan Old Style", "Palatino", "Georgia", serif';
-const INK = "#211922";
-const BULL = "#3E7A52";
-const BEAR = "#A23E3E";
+const AMBER = "#FF6B00";
+const BULL = "#3F8500";
+const BEAR = "#E5484D";
 
 interface NewsItem {
   id: string;
@@ -55,41 +54,39 @@ export function NewsPulse() {
   });
 
   function sentLabel(level: string) {
-    return level === "strong_bull" ? "強多" : level === "bull" ? "偏多" : level === "bear" ? "偏空" : level === "strong_bear" ? "強空" : "中性";
+    return level === "strong_bull" ? "STRONG BULL" : level === "bull" ? "BULL" : level === "bear" ? "BEAR" : level === "strong_bear" ? "STRONG BEAR" : "NEUTRAL";
   }
   function sentColor(level: string) {
     if (level === "strong_bull" || level === "bull") return BULL;
     if (level === "bear" || level === "strong_bear") return BEAR;
-    return "#91918C";
+    return "#767D88";
   }
 
   return (
     <section
       id="news"
-      className="py-20"
-      style={{ background: "#FAF9F6", borderTop: "1px solid rgba(33,25,34,0.08)" }}
+      className="py-24"
+      style={{ background: "#000000", borderBottom: "1px solid #27272A" }}
     >
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
           <div>
             <div
-              className="text-[10px] uppercase tracking-[0.2em] mb-2"
-              style={{ color: "#91918C", fontWeight: 590 }}
+              className="text-[11px] uppercase mb-4"
+              style={{ color: "#767D88", letterSpacing: "0.35px", fontWeight: 450 }}
             >
-              Wires · 今日快報
+              ───  Wires  ·  24h 新聞流  ───
             </div>
             <h2
-              className="text-[36px] sm:text-[44px]"
               style={{
-                fontFamily: SERIF,
-                color: INK,
-                fontWeight: 400,
-                lineHeight: 1.15,
-                letterSpacing: "-0.015em",
+                fontSize: "clamp(40px, 6vw, 64px)",
+                fontWeight: 500,
+                color: "#FFFFFF",
+                lineHeight: 1.0,
+                letterSpacing: "-1px",
               }}
             >
-              二十四小時內的{" "}
-              <span style={{ fontStyle: "italic" }}>市場聲音</span>
+              市場 <span style={{ color: AMBER }}>當下聲音</span>
             </h2>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -97,56 +94,56 @@ export function NewsPulse() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className="px-3 py-1.5 text-[12px]"
+                className="text-[10px] uppercase px-3 py-1.5 transition-colors"
                 style={{
-                  color: filter === f ? INK : "#91918C",
-                  fontWeight: filter === f ? 500 : 400,
-                  fontFamily: filter === f ? SERIF : undefined,
-                  fontStyle: filter === f ? "italic" : "normal",
+                  color: filter === f ? AMBER : "#767D88",
+                  fontWeight: filter === f ? 600 : 500,
+                  letterSpacing: "0.35px",
+                  borderBottom: filter === f ? `1px solid ${AMBER}` : "1px solid transparent",
                 }}
               >
-                {f === "all" ? "全部" : f === "bull" ? "偏多" : "偏空"}
+                {f === "all" ? "ALL" : f === "bull" ? "BULL" : "BEAR"}
               </button>
             ))}
-            <span style={{ color: "#A39E98" }} className="mx-1">·</span>
+            <span style={{ color: "#5E5E5E" }} className="mx-2">|</span>
             <button
               onClick={refresh}
               disabled={loading}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[12px] disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-[10px] uppercase disabled:opacity-50 transition-colors"
               style={{
                 background: "transparent",
-                color: INK,
-                border: "1px solid rgba(33,25,34,0.15)",
+                color: AMBER,
+                border: `1px solid ${AMBER}`,
+                fontWeight: 600,
+                letterSpacing: "0.2em",
+                borderRadius: "4px",
               }}
             >
               <RefreshCw className={`h-3 w-3 ${loading ? "animate-spin" : ""}`} />
-              {loading ? "重抓中…" : news.length === 0 ? "載入" : "再抓"}
+              {loading ? "Loading…" : news.length === 0 ? "Fetch" : "Refresh"}
             </button>
           </div>
         </div>
 
         {refreshedAt && (
-          <div className="text-[11px] mb-6" style={{ color: "#A39E98" }}>
-            最後更新 {refreshedAt.toLocaleTimeString("zh-TW")} · 顯示 {filtered.length} / {news.length}
+          <div
+            className="text-[10px] uppercase mb-6 font-mono"
+            style={{ color: "#5E5E5E", letterSpacing: "0.35px" }}
+          >
+            updated {refreshedAt.toLocaleTimeString("zh-TW")}  ·  {filtered.length} / {news.length}
           </div>
         )}
         {error && (
           <div
-            className="rounded p-3 mb-4 text-[12px]"
-            style={{
-              background: "#F5F4EF",
-              color: BEAR,
-              border: `1px solid ${BEAR}33`,
-              fontFamily: SERIF,
-              fontStyle: "italic",
-            }}
+            className="px-4 py-3 mb-6 text-[12px] font-mono"
+            style={{ background: "#0A0A0A", color: BEAR, border: `1px solid ${BEAR}33`, borderRadius: "4px" }}
           >
             ⚠ {error}
           </div>
         )}
 
-        {/* Magazine column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+        {/* 2-col reading layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
           {filtered.map((n, i) => (
             <a
               key={n.id}
@@ -154,54 +151,59 @@ export function NewsPulse() {
               target="_blank"
               rel="noopener noreferrer"
               className="group block pb-6"
-              style={{
-                borderBottom: "1px solid rgba(33,25,34,0.08)",
-              }}
+              style={{ borderBottom: "1px solid #27272A" }}
             >
-              <div className="flex items-baseline gap-3 mb-2">
+              <div className="flex items-baseline gap-3 mb-3">
                 <span
                   className="text-[10px] font-mono tabular-nums"
-                  style={{ color: "#A39E98", fontWeight: 500 }}
+                  style={{ color: "#5E5E5E", fontWeight: 500 }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span
-                  className="text-[10px] uppercase tracking-[0.15em]"
-                  style={{ color: "#62625B", fontWeight: 590 }}
+                  className="text-[10px] uppercase font-mono"
+                  style={{ color: "#C9CCD1", letterSpacing: "0.35px", fontWeight: 500 }}
                 >
                   {n.source}
                 </span>
-                <span className="text-[10px]" style={{ color: "#A39E98" }}>·</span>
-                <span className="text-[10px] inline-flex items-center gap-1" style={{ color: "#91918C" }}>
+                <span style={{ color: "#5E5E5E" }} className="mx-1">·</span>
+                <span
+                  className="text-[10px] uppercase font-mono inline-flex items-center gap-1"
+                  style={{ color: "#767D88", letterSpacing: "0.35px" }}
+                >
                   <Clock className="h-2.5 w-2.5" />
-                  {n.hoursAgo}h ago
+                  {n.hoursAgo}h
                 </span>
                 <span
-                  className="ml-auto text-[10px] uppercase tracking-[0.1em]"
-                  style={{ color: sentColor(n.sentimentLevel), fontWeight: 590 }}
+                  className="ml-auto text-[10px] uppercase font-mono"
+                  style={{ color: sentColor(n.sentimentLevel), letterSpacing: "0.35px", fontWeight: 600 }}
                 >
-                  {sentLabel(n.sentimentLevel)} {n.sentiment >= 0 ? "+" : ""}{n.sentiment.toFixed(2)}
+                  {sentLabel(n.sentimentLevel)}
                 </span>
               </div>
               <h3
-                className="text-[19px] sm:text-[21px] mb-2 leading-snug"
+                className="mb-3"
                 style={{
-                  fontFamily: SERIF,
-                  color: INK,
-                  fontWeight: 400,
+                  fontSize: "20px",
+                  color: "#FFFFFF",
+                  fontWeight: 500,
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.4px",
                 }}
               >
                 {n.title}
               </h3>
               {n.symbols.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 mt-2">
+                <div className="flex flex-wrap gap-1.5 mt-3">
                   {n.symbols.slice(0, 5).map((sym) => (
                     <span
                       key={sym}
-                      className="text-[10px] font-mono px-1.5 py-0.5"
+                      className="text-[10px] font-mono px-2 py-0.5"
                       style={{
-                        background: "#F5F4EF",
-                        color: "#62625B",
+                        background: "#0A0A0A",
+                        color: "#C9CCD1",
+                        border: "1px solid #27272A",
+                        letterSpacing: "-0.16px",
                       }}
                     >
                       {sym}
@@ -210,10 +212,10 @@ export function NewsPulse() {
                 </div>
               )}
               <div
-                className="mt-3 inline-flex items-center gap-1 text-[11px]"
-                style={{ color: "#3B4F8C" }}
+                className="mt-3 inline-flex items-center gap-1 text-[11px] uppercase"
+                style={{ color: AMBER, letterSpacing: "0.35px", fontWeight: 500 }}
               >
-                繼續閱讀 <ExternalLink className="h-2.5 w-2.5" />
+                Read source <ExternalLink className="h-2.5 w-2.5" />
               </div>
             </a>
           ))}
@@ -221,16 +223,15 @@ export function NewsPulse() {
 
         {!loading && news.length === 0 && (
           <div
-            className="rounded-2xl p-10 text-center"
+            className="py-16 text-center text-[14px] uppercase"
             style={{
-              background: "#F5F4EF",
-              color: "#91918C",
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontSize: "16px",
+              color: "#767D88",
+              letterSpacing: "0.35px",
+              border: "1px solid #27272A",
+              borderRadius: "4px",
             }}
           >
-            按上方「載入」抓 24 小時內最新新聞
+            click fetch to load wires
           </div>
         )}
       </div>
