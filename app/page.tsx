@@ -1,32 +1,25 @@
 import { Nav } from "@/components/nav";
-import { MarketPulse } from "@/components/market-pulse";
-import { Watchlist } from "@/components/watchlist";
-import { SectorScanner } from "@/components/sector-scanner";
-import { NewsPulse } from "@/components/news-pulse";
+import { HeroFullBleed } from "@/components/hero-fullbleed";
+import { TileGrid } from "@/components/tile-grid";
 import { Footer } from "@/components/footer";
 
 /**
- * v2.0 — 從 0 重做
+ * v3.0 — Apple-style image-first redesign
  *
- * 設計取向：大膽當代（深藍 + 金 + 桃紅）/ Webull / Toss / 韓系證券 app 風
- * 願景：retail 投資人不用看盤，打開就知道今天該不該動
+ * 設計原則：圖片 > 文字
+ *   - 第一屏：full-bleed AI 生成大圖 + 1 句標題 + 2 個 pill button
+ *   - 往下滑：6-tile 2x3 grid（每 tile 大圖 + 1 行 tagline + 1 button）
+ *   - 詳細資訊只在 tile 點擊後才出現（drill-down）
  *
- * 5 個 sections：
- *   1. Market Pulse Hero — AI Morning Brief + 5 國 + Top Opps/Risks
- *   2. Watchlist — localStorage 個人清單，可即時刷新
- *   3. Sector Scanner — 100 檔全市場雷達（5 國 / sector / search / 排序）
- *   4. News Pulse — Yahoo 24h 新聞流 + 情緒分數
- *   5. Footer — Source / Stack
+ * 配色：撞色彩繪 — 白底 + 飽和色塊（橘 #FF6E40 / 藍 #0066FF / 桃紅 #E91E63 / 黃 #FFC700 / 綠 #00C896 / 紫 #9B59B6）
  */
 export default function Page() {
   return (
-    <div className="min-h-screen" style={{ background: "#0B1426" }}>
+    <div style={{ background: "#FFFFFF" }}>
       <Nav />
       <main>
-        <MarketPulse />
-        <Watchlist />
-        <SectorScanner />
-        <NewsPulse />
+        <HeroFullBleed />
+        <TileGrid />
       </main>
       <Footer />
     </div>

@@ -1,136 +1,96 @@
-import { Github, ExternalLink } from "lucide-react";
-
-const AMBER = "#FF6B00";
+import { Github } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer
-      style={{
-        background: "#000000",
-        borderTop: "1px solid #27272A",
-      }}
-    >
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-20">
-        <div
-          className="text-[11px] uppercase mb-6"
-          style={{ color: "#767D88", letterSpacing: "0.35px", fontWeight: 450 }}
-        >
-          ───  Colophon  ·  版本資訊  ───
-        </div>
-
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
-          <h3
-            style={{
-              fontSize: "clamp(36px, 5vw, 56px)",
-              fontWeight: 500,
-              color: "#FFFFFF",
-              lineHeight: 1.0,
-              letterSpacing: "-1px",
-            }}
-          >
-            <span style={{ color: AMBER }}>每日</span>股市儀表板
-          </h3>
-          <a
-            href="https://github.com/GKS711/_quant-terminal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[11px] uppercase px-5 py-2.5 transition-colors"
-            style={{
-              border: "1px solid #27272A",
-              color: "#FFFFFF",
-              letterSpacing: "0.18em",
-              fontWeight: 500,
-              borderRadius: "4px",
-            }}
-          >
-            <Github className="h-3.5 w-3.5" />
-            GitHub
-          </a>
-        </div>
-
-        <p
-          className="text-[16px] mb-12 max-w-[520px]"
-          style={{ color: "#C9CCD1", lineHeight: 1.6, letterSpacing: "-0.16px" }}
-        >
-          讓全球市場像一份雜誌每天送到你手上。資料來自公開源、AI 解讀公開、計算公式公開。
-        </p>
-
-        {/* 3 col tight grid */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-3 gap-px mb-12"
-          style={{ background: "#27272A" }}
-        >
-          {[
-            {
-              title: "Sources",
-              items: [
-                "Yahoo Finance v8",
-                "Stooq.com (fallback)",
-                "Yahoo + GNews + RSS",
-                "Google Gemma 4 31B",
-              ],
-            },
-            {
-              title: "Stack",
-              items: [
-                "Next.js 14 · TS strict",
-                "Tailwind · Geist Sans/Mono",
-                "11 strategy pure-fns · zod",
-              ],
-            },
-            {
-              title: "Open",
-              items: [
-                { label: "README", href: "https://github.com/GKS711/_quant-terminal#readme" },
-                { label: "DESIGN.md", href: "https://github.com/GKS711/_quant-terminal/blob/main/DESIGN.md" },
-                { label: "Pipeline", href: "https://github.com/GKS711/_quant-terminal/blob/main/scripts/refresh-data.mjs" },
-              ],
-            },
-          ].map((col) => (
-            <div key={col.title} className="p-6" style={{ background: "#000000" }}>
-              <div
-                className="text-[11px] uppercase mb-4"
-                style={{ color: AMBER, letterSpacing: "0.35px", fontWeight: 600 }}
-              >
-                {col.title}
-              </div>
-              <ul className="space-y-2">
-                {col.items.map((it, i) =>
-                  typeof it === "string" ? (
-                    <li
-                      key={i}
-                      className="text-[13px] font-mono"
-                      style={{ color: "#C9CCD1", letterSpacing: "-0.16px" }}
-                    >
-                      {it}
-                    </li>
-                  ) : (
-                    <li key={i}>
-                      <a
-                        href={it.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[13px] font-mono"
-                        style={{ color: AMBER, letterSpacing: "-0.16px" }}
-                      >
-                        <ExternalLink className="h-3 w-3" />
-                        {it.label}
-                      </a>
-                    </li>
-                  ),
-                )}
-              </ul>
+    <footer style={{ background: "#FFFFFF", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span
+                className="grid h-7 w-7 place-items-center rounded-full"
+                style={{
+                  background: "linear-gradient(135deg, #FF6E40 0%, #E91E63 50%, #0066FF 100%)",
+                }}
+              />
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#000" }}>
+                每日股市儀表板
+              </span>
             </div>
-          ))}
+            <p style={{ fontSize: "13px", color: "#767676", lineHeight: 1.6 }}>
+              讓 retail 投資人不用看盤就掌握股市全局。圖片大過文字，AI 替你讀完今天。
+            </p>
+          </div>
+
+          {/* Sources */}
+          <div>
+            <div
+              className="text-[11px] uppercase mb-3"
+              style={{ color: "#FF6E40", letterSpacing: "0.2em", fontWeight: 700 }}
+            >
+              Sources
+            </div>
+            <ul className="space-y-2 text-[13px]" style={{ color: "#3A3A3A" }}>
+              <li>Yahoo Finance v8</li>
+              <li>Stooq.com (fallback)</li>
+              <li>Google Gemma 4 31B</li>
+              <li>11 strategies pure-fns</li>
+            </ul>
+          </div>
+
+          {/* Open */}
+          <div>
+            <div
+              className="text-[11px] uppercase mb-3"
+              style={{ color: "#0066FF", letterSpacing: "0.2em", fontWeight: 700 }}
+            >
+              Open
+            </div>
+            <ul className="space-y-2 text-[13px]">
+              <li>
+                <a
+                  href="https://github.com/GKS711/_quant-terminal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5"
+                  style={{ color: "#000", fontWeight: 500 }}
+                >
+                  <Github className="h-3.5 w-3.5" /> GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/GKS711/_quant-terminal#readme"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#000" }}
+                >
+                  README
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/GKS711/_quant-terminal/blob/main/DESIGN.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#000" }}
+                >
+                  DESIGN.md
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        {/* Bottom rule */}
         <div
-          className="pt-6 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-[10px] uppercase font-mono"
-          style={{ borderTop: "1px solid #27272A", color: "#5E5E5E", letterSpacing: "0.35px" }}
+          className="pt-6 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-[11px]"
+          style={{ borderTop: "1px solid rgba(0,0,0,0.06)", color: "#A0A0A0" }}
         >
-          <div>© 2026 GKS  ·  Personal portfolio  ·  Not investment advice</div>
-          <div>v2.2  ·  Cinematic Dark  ·  Issue 001</div>
+          <div>© 2026 GKS · Personal portfolio · Not investment advice</div>
+          <div className="font-mono uppercase tracking-widest" style={{ color: "#FF6E40" }}>
+            v3.0 · Vibrant
+          </div>
         </div>
       </div>
     </footer>

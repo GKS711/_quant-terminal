@@ -1,47 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { Github } from "lucide-react";
-
-const AMBER = "#FF6B00";
 
 export function Nav() {
   return (
     <nav
       className="sticky top-0 z-40 backdrop-blur-md"
       style={{
-        background: "rgba(0,0,0,0.85)",
-        borderBottom: "1px solid #27272A",
+        background: "rgba(255,255,255,0.85)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
       }}
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2">
           <span
-            className="text-[14px] uppercase tracking-[0.18em]"
-            style={{ color: "#FFFFFF", fontWeight: 500 }}
-          >
+            className="grid h-7 w-7 place-items-center rounded-full"
+            style={{
+              background: "linear-gradient(135deg, #FF6E40 0%, #E91E63 50%, #0066FF 100%)",
+            }}
+          />
+          <span className="text-[15px] tracking-tight" style={{ fontWeight: 600, color: "#000" }}>
             每日股市儀表板
-          </span>
-          <span
-            className="text-[10px] uppercase tracking-[0.3em]"
-            style={{ color: "#767D88", fontWeight: 450 }}
-          >
-            v2.2 / GKS
           </span>
         </Link>
 
-        <a
-          href="https://github.com/GKS711/_quant-terminal"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] transition-colors"
-          style={{ color: "#C9CCD1", fontWeight: 500 }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = AMBER)}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "#C9CCD1")}
-        >
-          <Github className="h-3.5 w-3.5" />
-          GitHub
-        </a>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/markets"
+            className="hidden sm:inline-flex px-4 py-2 text-[13px]"
+            style={{ color: "#000", fontWeight: 500 }}
+          >
+            Markets
+          </Link>
+          <a
+            href="https://github.com/GKS711/_quant-terminal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 text-[13px] rounded-full transition-colors"
+            style={{
+              background: "#000",
+              color: "#FFF",
+              fontWeight: 600,
+            }}
+          >
+            Open
+          </a>
+        </div>
       </div>
     </nav>
   );
